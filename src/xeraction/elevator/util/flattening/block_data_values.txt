@@ -1,0 +1,764 @@
+planks
+0 variant=oak
+1 variant=spruce
+2 variant=birch
+3 variant=jungle
+4 variant=acacia
+5 variant=dark_oak
+-
+stone
+0 variant=stone
+1 variant=granite
+2 variant=smooth_granite
+3 variant=diorite
+4 variant=smooth_diorite
+5 variant=andesite
+6 variant=smooth_andesite
+-
+dirt
+0 variant=dirt
+1 variant=coarse_dirt
+2 variant=podzol
+-
+sapling
+0 type=oak,stage=0
+1 type=spruce,stage=0
+2 type=birch,stage=0
+3 type=jungle,stage=0
+4 type=acacia,stage=0
+5 type=dark_oak,stage=0
+8 type=oak,stage=1
+9 type=spruce,stage=1
+10 type=birch,stage=1
+11 type=jungle,stage=1
+12 type=acacia,stage=1
+13 type=dark_oak,stage=1
+-
+water,lava
+>level
+-
+sand
+0 variant=sand
+1 variant=red_sand
+-
+log
+0 variant=oak,axis=y
+1 variant=spruce,axis=y
+2 variant=birch,axis=y
+3 variant=jungle,axis=y
+4 variant=oak,axis=x
+5 variant=spruce,axis=x
+6 variant=birch,axis=x
+7 variant=jungle,axis=x
+8 variant=oak,axis=z
+9 variant=spruce,axis=z
+10 variant=birch,axis=z
+11 variant=jungle,axis=z
+12 variant=oak,axis=none
+13 variant=spruce,axis=none
+14 variant=birch,axis=none
+15 variant=jungle,axis=none
+-
+log2
+0 variant=acacia,axis=y
+1 variant=dark_oak,axis=y
+4 variant=acacia,axis=x
+5 variant=dark_oak,axis=x
+8 variant=acacia,axis=z
+9 variant=dark_oak,axis=z
+12 variant=acacia,axis=none
+13 variant=dark_oak,axis=none
+-
+leaves
+0 variant=oak,decayable=true,check_decay=false
+1 variant=spruce,decayable=true,check_decay=false
+2 variant=birch,decayable=true,check_decay=false
+3 variant=jungle,decayable=true,check_decay=false
+4 variant=oak,decayable=false,check_decay=false
+5 variant=spruce,decayable=false,check_decay=false
+6 variant=birch,decayable=false,check_decay=false
+7 variant=jungle,decayable=false,check_decay=false
+8 variant=oak,decayable=true,check_decay=true
+9 variant=spruce,decayable=true,check_decay=true
+10 variant=birch,decayable=true,check_decay=true
+11 variant=jungle,decayable=true,check_decay=true
+12 variant=oak,decayable=false,check_decay=true
+13 variant=spruce,decayable=false,check_decay=true
+14 variant=birch,decayable=false,check_decay=true
+15 variant=jungle,decayable=false,check_decay=true
+-
+leaves2
+0 variant=acacia,decayable=true,check_decay=false
+1 variant=dark_oak,decayable=true,check_decay=false
+4 variant=acacia,decayable=false,check_decay=false
+5 variant=dark_oak,decayable=false,check_decay=false
+8 variant=acacia,decayable=true,check_decay=true
+9 variant=dark_oak,decayable=true,check_decay=true
+12 variant=acacia,decayable=false,check_decay=true
+13 variant=dark_oak,decayable=false,check_decay=true
+-
+carpet,wool,stained_hardened_clay,stained_glass,stained_glass_pane,concrete,concrete_powder
+0 color=white
+1 color=orange
+2 color=magenta
+3 color=light_blue
+4 color=yellow
+5 color=lime
+6 color=pink
+7 color=gray
+8 color=silver
+9 color=cyan
+10 color=purple
+11 color=blue
+12 color=brown
+13 color=green
+14 color=red
+15 color=black
+-
+torch,redstone_torch,unlit_redstone_torch
+1 facing=east
+2 facing=west
+3 facing=south
+4 facing=north
+5 facing=up
+-
+double_stone_slab
+0 variant=stone,seamless=false
+1 variant=sandstone,seamless=false
+2 variant=wood_old,seamless=false
+3 variant=cobblestone,seamless=false
+4 variant=brick,seamless=false
+5 variant=stone_brick,seamless=false
+6 variant=nether_brick,seamless=false
+7 variant=quartz,seamless=false
+8 variant=stone,seamless=true
+9 variant=sandstone,seamless=true
+10 variant=wood_old,seamless=true
+11 variant=cobblestone,seamless=true
+12 variant=brick,seamless=true
+13 variant=stone_brick,seamless=true
+14 variant=nether_brick,seamless=true
+15 variant=quartz,seamless=true
+-
+double_stone_slab2
+0 variant=red_sandstone,seamless=false
+8 variant=red_sandstone,seamless=true
+-
+stone_slab
+0 variant=stone,half=bottom
+1 variant=sandstone,half=bottom
+2 variant=wood_old,half=bottom
+3 variant=cobblestone,half=bottom
+4 variant=brick,half=bottom
+5 variant=stone_brick,half=bottom
+6 variant=nether_brick,half=bottom
+7 variant=quartz,half=bottom
+8 variant=stone,half=top
+9 variant=sandstone,half=top
+10 variant=wood_old,half=top
+11 variant=cobblestone,half=top
+12 variant=brick,half=top
+13 variant=stone_brick,half=top
+14 variant=nether_brick,half=top
+15 variant=quartz,half=top
+-
+stone_slab2
+0 variant=red_sandstone,half=bottom
+8 variant=red_sandstone,half=top
+-
+double_wooden_slab
+0 variant=oak
+1 variant=spruce
+2 variant=birch
+3 variant=jungle
+4 variant=acacia
+5 variant=dark_oak
+-
+wooden_slab
+0 variant=oak,half=bottom
+1 variant=spruce,half=bottom
+2 variant=birch,half=bottom
+3 variant=jungle,half=bottom
+4 variant=acacia,half=bottom
+5 variant=dark_oak,half=bottom
+8 variant=oak,half=top
+9 variant=spruce,half=top
+10 variant=birch,half=top
+11 variant=jungle,half=top
+12 variant=acacia,half=top
+13 variant=dark_oak,half=top
+-
+purpur_double_slab
+0 variant=default
+-
+purpur_slab
+0 variant=default,half=bottom
+8 variant=default,half=top
+-
+fire
+>age
+-
+sandstone
+0 type=sandstone
+1 type=chiseled_sandstone
+2 type=smooth_sandstone
+-
+red_sandstone
+0 type=red_sandstone
+1 type=chiseled_red_sandstone
+2 type=smooth_red_sandstone
+-
+bed
+0 facing=south,occupied=false,part=foot
+1 facing=west,occupied=false,part=foot
+2 facing=north,occupied=false,part=foot
+3 facing=east,occupied=false,part=foot
+4 facing=south,occupied=true,part=foot
+5 facing=west,occupied=true,part=foot
+6 facing=north,occupied=true,part=foot
+7 facing=east,occupied=true,part=foot
+8 facing=south,occupied=false,part=head
+9 facing=west,occupied=false,part=head
+10 facing=north,occupied=false,part=head
+11 facing=east,occupied=false,part=head
+12 facing=south,occupied=false,part=head
+13 facing=west,occupied=false,part=head
+14 facing=north,occupied=false,part=head
+15 facing=east,occupied=false,part=head
+-
+tallgrass
+0 type=dead_bush
+1 type=tall_grass
+2 type=fern
+-
+red_flower
+0 type=poppy
+1 type=blue_orchid
+2 type=allium
+3 type=houstonia
+4 type=red_tulip
+5 type=orange_tulip
+6 type=white_tulip
+7 type=pink_tulip
+8 type=oxeye_daisy
+-
+yellow_flower
+0 type=dandelion
+-
+double_plant
+0 variant=sunflower,half=lower
+1 variant=syringa,half=lower
+2 variant=double_grass,half=lower
+3 variant=double_fern,half=lower
+4 variant=double_rose,half=lower
+5 variant=paeonia,half=lower
+8 variant=sunflower,half=upper
+9 variant=syringa,half=upper
+10 variant=double_grass,half=upper
+11 variant=double_fern,half=upper
+12 variant=double_rose,half=upper
+13 variant=paeonia,half=upper
+-
+piston,sticky_piston
+0 facing=down,extended=false
+1 facing=up,extended=false
+2 facing=north,extended=false
+3 facing=south,extended=false
+4 facing=west,extended=false
+5 facing=east,extended=false
+8 facing=down,extended=true
+9 facing=up,extended=true
+10 facing=north,extended=true
+11 facing=south,extended=true
+12 facing=west,extended=true
+13 facing=east,extended=true
+-
+piston_head,piston_extension
+0 facing=down,type=normal
+1 facing=up,type=normal
+2 facing=north,type=normal
+3 facing=south,type=normal
+4 facing=west,type=normal
+5 facing=east,type=normal
+8 facing=down,type=sticky
+9 facing=up,type=sticky
+10 facing=north,type=sticky
+11 facing=south,type=sticky
+12 facing=west,type=sticky
+13 facing=east,type=sticky
+-
+oak_stairs,stone_stairs,brick_stairs,stone_brick_stairs,nether_brick_stairs,sandstone_stairs,spruce_stairs,birch_stairs,jungle_stairs,quartz_stairs,acacia_stairs,dark_oak_stairs,red_sandstone_stairs,purpur_stairs
+0 facing=east,half=bottom
+1 facing=west,half=bottom
+2 facing=south,half=bottom
+3 facing=north,half=bottom
+4 facing=east,half=top
+5 facing=west,half=top
+6 facing=south,half=top
+7 facing=north,half=top
+-
+redstone_wire,daylight_detector
+>power
+-
+wheat,carrots,potatoes,pumpkin_stem,melon_stem
+0 age=0
+1 age=1
+2 age=2
+3 age=3
+4 age=4
+5 age=5
+6 age=6
+7 age=7
+-
+beetroots
+0 age=0
+1 age=1
+2 age=2
+3 age=3
+-
+farmland
+0 moisture=0
+1 moisture=1
+2 moisture=2
+3 moisture=3
+4 moisture=4
+5 moisture=5
+6 moisture=6
+7 moisture=7
+-
+standing_banner,standing_sign
+>rotation
+-
+wall_banner,wall_sign,ladder,furnace,chest,trapped_chest,ender_chest
+2 facing=north
+3 facing=south
+4 facing=west
+5 facing=east
+-
+wooden_door,iron_door,spruce_door,birch_door,jungle_door,acacia_door,dark_oak_door
+0 half=lower,open=false,facing=east
+1 half=lower,open=false,facing=south
+2 half=lower,open=false,facing=west
+3 half=lower,open=false,facing=north
+4 half=lower,open=true,facing=east
+5 half=lower,open=true,facing=south
+6 half=lower,open=true,facing=west
+7 half=lower,open=true,facing=north
+8 half=upper,hinge=right,powered=false
+9 half=upper,hinge=left,powered=false
+10 half=upper,hinge=right,powered=true
+11 half=upper,hinge_left,powered=true
+-
+rail
+0 shape=north_south
+1 shape=east_west
+2 shape=ascending_east
+3 shape=ascending_west
+4 shape=ascending_north
+5 shape=ascending_south
+6 shape=south_east
+7 shape=south_west
+8 shape=north_west
+9 shape=north_east
+-
+golden_rail,detector_rail,activator_rail
+0 shape=north_south,powered=false
+1 shape=east_west,powered=false
+2 shape=ascending_east,powered=false
+3 shape=ascending_west,powered=false
+4 shape=ascending_north,powered=false
+5 shape=ascending_south,powered=false
+8 shape=north_south,powered=true
+9 shape=east_west,powered=true
+10 shape=ascending_east,powered=true
+11 shape=ascending_west,powered=true
+12 shape=ascending_north,powered=true
+13 shape=ascending_south,powered=true
+-
+dropper,dispenser
+0 facing=down,triggered=false
+1 facing=up,triggered=false
+2 facing=north,triggered=false
+3 facing=south,triggered=false
+4 facing=west,triggered=false
+5 facing=east,triggered=false
+8 facing=down,triggered=true
+9 facing=up,triggered=true
+10 facing=north,triggered=true
+11 facing=south,triggered=true
+12 facing=west,triggered=true
+13 facing=east,triggered=true
+-
+hopper
+0 facing=down,enabled=true
+2 facing=north,enabled=true
+3 facing=south,enabled=true
+4 facing=west,enabled=true
+5 facing=east,enabled=true
+8 facing=down,enabled=false
+10 facing=north,enabled=false
+11 facing=south,enabled=false
+12 facing=west,enabled=false
+13 facing=east,enabled=false
+-
+lever
+0 facing=down_x,powered=false
+1 facing=east,powered=false
+2 facing=west,powered=false
+3 facing=south,powered=false
+4 facing=north,powered=false
+5 facing=up_z,powered=false
+6 facing=up_x,powered=false
+7 facing=down_z,powered=false
+8 facing=down_x,powered=true
+9 facing=east,powered=true
+10 facing=west,powered=true
+11 facing=south,powered=true
+12 facing=north,powered=true
+13 facing=up_z,powered=true
+14 facing=up_x,powered=true
+15 facing=down_z,powered=true
+-
+stone_pressure_plate,wooden_pressure_plate
+0 powered=false
+1 powered=true
+-
+light_weighted_pressure_plate,heavy_weighted_pressure_plate
+>age
+-
+stone_button,wooden_button
+0 facing=down,powered=false
+1 facing=east,powered=false
+2 facing=west,powered=false
+3 facing=south,powered=false
+4 facing=north,powered=false
+5 facing=up,powered=false
+8 facing=down,powered=true
+9 facing=east,powered=true
+10 facing=west,powered=true
+11 facing=south,powered=true
+12 facing=north,powered=true
+13 facing=up,powered=true
+-
+snow_layer
+0 layers=1
+1 layers=2
+2 layers=3
+3 layers=4
+4 layers=5
+5 layers=6
+6 layers=7
+7 layers=8
+-
+cactus,reeds
+>age
+-
+jukebox
+0 has_record=false
+1 has_record=true
+-
+pumpkin,lit_pumpkin
+0 facing=south
+1 facing=west
+2 facing=north
+3 facing=east
+-
+cake
+0 bites=0
+1 bites=1
+2 bites=2
+3 bites=3
+4 bites=4
+5 bites=5
+6 bites=6
+-
+unpowered_repeater,powered_repeater
+0 facing=north,delay=1
+1 facing=east,delay=1
+2 facing=south,delay=1
+3 facing=west,delay=1
+4 facing=north,delay=2
+5 facing=east,delay=2
+6 facing=south,delay=2
+7 facing=west,delay=2
+8 facing=north,delay=3
+9 facing=east,delay=3
+10 facing=south,delay=3
+11 facing=west,delay=3
+12 facing=north,delay=4
+13 facing=east,delay=4
+14 facing=south,delay=4
+15 facing=west,delay=4
+-
+unpowered_comparator,powered_comparator
+0 facing=north,mode=compare,powered=false
+1 facing=east,mode=compare,powered=false
+2 facing=south,mode=compare,powered=false
+3 facing=west,mode=compare,powered=false
+4 facing=north,mode=subtract,powered=false
+5 facing=east,mode=subtract,powered=false
+6 facing=south,mode=subtract,powered=false
+7 facing=west,mode=subtract,powered=false
+8 facing=north,mode=compare,powered=true
+9 facing=east,mode=compare,powered=true
+10 facing=south,mode=compare,powered=true
+11 facing=west,mode=compare,powered=true
+12 facing=north,mode=subtract,powered=true
+13 facing=east,mode=subtract,powered=true
+14 facing=south,mode=subtract,powered=true
+15 facing=west,mode=subtract,powered=true
+-
+trapdoor
+0 facing=north,open=false,half=bottom
+1 facing=south,open=false,half=bottom
+2 facing=west,open=false,half=bottom
+3 facing=east,open=false,half=bottom
+4 facing=north,open=true,half=bottom
+5 facing=south,open=true,half=bottom
+6 facing=west,open=true,half=bottom
+7 facing=east,open=true,half=bottom
+8 facing=north,open=false,half=top
+9 facing=south,open=false,half=top
+10 facing=west,open=false,half=top
+11 facing=east,open=false,half=top
+12 facing=north,open=true,half=top
+13 facing=south,open=true,half=top
+14 facing=west,open=true,half=top
+15 facing=east,open=true,half=top
+-
+monster_egg
+0 variant=stone
+1 variant=cobblestone
+2 variant=stone_brick
+3 variant=mossy_brick
+4 variant=cracked_brick
+5 variant=chiseled_brick
+-
+stonebrick
+0 variant=stonebrick
+1 variant=mossy_stonebrick
+2 variant=cracked_stonebrick
+3 variant=chiseled_stonebrick
+-
+prismarine
+0 variant=prismarine
+1 variant=prismarine_bricks
+2 variant=dark_prismarine
+-
+sponge
+0 wet=false
+1 wet=true
+-
+brown_mushroom_block,red_mushroom_block
+0 variant=all_inside
+1 variant=north_west
+2 variant=north
+3 variant=north_east
+4 variant=west
+5 variant=center
+6 variant=east
+7 variant=south_west
+8 variant=south
+9 variant=south_east
+10 variant=stem
+14 variant=all_outside
+15 variant=all_stem
+-
+vine
+0 south=false,west=false,north=false,east=false
+1 south=true,west=false,north=false,east=false
+2 south=false,west=true,north=false,east=false
+3 south=true,west=true,north=false,east=false
+4 south=false,west=false,north=true,east=false
+5 south=true,west=false,north=true,east=false
+6 south=false,west=true,north=true,east=false
+7 south=true,west=true,north=true,east=false
+8 south=false,west=false,north=false,east=true
+9 south=true,west=false,north=false,east=true
+10 south=false,west=true,north=false,east=true
+11 south=true,west=true,north=false,east=true
+12 south=false,west=false,north=true,east=true
+13 south=true,west=false,north=true,east=true
+14 south=false,west=true,north=true,east=true
+15 south=true,west=true,north=true,east=true
+-
+fence_gate,spruce_fence_gate,birch_fence_gate,jungle_fence_gate,dark_oak_fence_gate,acacia_fence_gate
+0 facing=south,open=false,powered=false
+1 facing=west,open=false,powered=false
+2 facing=north,open=false,powered=false
+3 facing=east,open=false,powered=false
+4 facing=south,open=true,powered=false
+5 facing=west,open=true,powered=false
+6 facing=north,open=true,powered=false
+7 facing=east,open=true,powered=false
+8 facing=south,open=false,powered=true
+9 facing=west,open=false,powered=true
+10 facing=north,open=false,powered=true
+11 facing=east,open=false,powered=true
+12 facing=south,open=true,powered=true
+13 facing=west,open=true,powered=true
+14 facing=north,open=true,powered=true
+15 facing=east,open=true,powered=true
+-
+nether_wart
+0 age=0
+1 age=1
+2 age=2
+3 age=3
+-
+brewing_stand
+0 has_bottle_0=false,has_bottle_1=false,has_bottle_2=false
+1 has_bottle_0=true,has_bottle_1=false,has_bottle_2=false
+2 has_bottle_0=false,has_bottle_1=true,has_bottle_2=false
+3 has_bottle_0=true,has_bottle_1=true,has_bottle_2=false
+4 has_bottle_0=false,has_bottle_1=false,has_bottle_2=true
+5 has_bottle_0=true,has_bottle_1=false,has_bottle_2=true
+6 has_bottle_0=false,has_bottle_1=true,has_bottle_2=true
+7 has_bottle_0=true,has_bottle_1=true,has_bottle_2=true
+-
+cauldron
+0 level=0
+1 level=1
+2 level=2
+3 level=3
+-
+portal
+1 axis=x
+2 axis=z
+-
+end_portal_frame
+0 facing=south,eye=false
+1 facing=west,eye=false
+2 facing=north,eye=false
+3 facing=east,eye=false
+4 facing=south,eye=true
+5 facing=west,eye=true
+6 facing=north,eye=true
+7 facing=east,eye=true
+-
+cocoa
+0 facing=south,age=0
+1 facing=west,age=0
+2 facing=north,age=0
+3 facing=east,age=0
+4 facing=south,age=1
+5 facing=west,age=1
+6 facing=north,age=1
+7 facing=east,age=1
+8 facing=south,age=2
+9 facing=west,age=2
+10 facing=north,age=2
+11 facing=east,age=2
+-
+tripwire_hook
+0 facing=south,attached=false,powered=false
+1 facing=west,attached=false,powered=false
+2 facing=north,attached=false,powered=false
+3 facing=east,attached=false,powered=false
+4 facing=south,attached=true,powered=false
+5 facing=west,attached=true,powered=false
+6 facing=north,attached=true,powered=false
+7 facing=east,attached=true,powered=false
+8 facing=south,attached=false,powered=true
+9 facing=west,attached=false,powered=true
+10 facing=north,attached=false,powered=true
+11 facing=east,attached=false,powered=true
+12 facing=south,attached=true,powered=true
+13 facing=west,attached=true,powered=true
+14 facing=north,attached=true,powered=true
+15 facing=east,attached=true,powered=true
+-
+tripwire
+0 powered=false,attached=false,disarmed=false
+1 powered=true,attached=false,disarmed=false
+4 powered=false,attached=true,disarmed=false
+5 powered=true,attached=true,disarmed=false
+8 powered=false,attached=false,disarmed=true
+9 powered=true,attached=false,disarmed=true
+12 powered=false,attached=true,disarmed=true
+13 powered=true,attached=true,disarmed=true
+-
+cobblestone_wall
+0 variant=cobblestone
+1 variant=mossy_cobblestone
+-
+flower_pot
+>legacy_data
+-
+skull
+0 facing=down,nodrop=false
+1 facing=up,nodrop=false
+2 facing=north,nodrop=false
+3 facing=south,nodrop=false
+4 facing=west,nodrop=false
+5 facing=east,nodrop=false
+8 facing=down,nodrop=true
+9 facing=up,nodrop=true
+10 facing=north,nodrop=true
+11 facing=south,nodrop=true
+12 facing=west,nodrop=true
+13 facing=east,nodrop=true
+-
+quartz_block
+0 variant=default
+1 variant=chiseled
+2 variant=lines_y
+3 variant=lines_x
+4 variant=lines_z
+-
+anvil
+0 facing=south,damage=0
+1 facing=west,damage=0
+2 facing=north,damage=0
+3 facing=east,damage=0
+4 facing=south,damage=1
+5 facing=west,damage=1
+6 facing=north,damage=1
+7 facing=east,damage=1
+8 facing=south,damage=2
+9 facing=west,damage=2
+10 facing=north,damage=2
+11 facing=east,damage=2
+-
+observer
+0 facing=down,powered=false
+1 facing=up,powered=false
+2 facing=north,powered=false
+3 facing=south,powered=false
+4 facing=west,powered=false
+5 facing=east,powered=false
+8 facing=down,powered=true
+9 facing=up,powered=true
+10 facing=north,powered=true
+11 facing=south,powered=true
+12 facing=west,powered=true
+13 facing=east,powered=true
+-
+structure_block
+0 mode=data
+1 mode=save
+2 mode=load
+3 mode=corner
+-
+chorus_flower
+0 age=0
+1 age=1
+2 age=2
+3 age=3
+4 age=4
+5 age=5
+-
+end_rod
+0 facing=down
+1 facing=up
+2 facing=north
+3 facing=south
+4 facing=west
+5 facing=east
+-
+white_glazed_terracotta,orange_glazed_terracotta,magenta_glazed_terracotta,light_blue_glazed_terracotta,yellow_glazed_terracotta,lime_glazed_terracotta,pink_glazed_terracotta,gray_glazed_terracotta,silver_glazed_terracotta,cyan_glazed_terracotta,purple_glazed_terracotta,blue_glazed_terracotta,brown_glazed_terracotta,green_glazed_terracotta,red_glazed_terracotta,black_glazed_terracotta
+0 facing=south
+1 facing=west
+2 facing=north
+3 facing=east
+-

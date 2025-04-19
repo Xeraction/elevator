@@ -1,0 +1,70 @@
+skull
+0 skeleton_skull
+1 wither_skeleton_skull
+2 zombie_head
+3 player_head
+4 creeper_head
+5 dragon_head
+-
+coal
+0 coal
+1 charcoal
+-
+boat
+0 oak_boat
+-
+dye
+0 ink_sac
+1 rose_red
+2 cactus_green
+3 cocoa_beans
+4 lapis_lazuli
+5 purple_dye
+6 cyan_dye
+7 light_gray_dye
+8 gray_dye
+9 pink_dye
+10 lime_dye
+11 dandelion_yellow
+12 light_blue_dye
+13 magenta_dye
+14 orange_dye
+15 bone_meal
+-
+fish
+0 cod
+1 salmon
+2 tropical_fish
+3 pufferfish
+-
+cooked_fish
+0 cooked_cod
+1 cooked_salmon
+-
+anvil
+0 anvil
+1 chipped_anvil
+2 damaged_anvil
+-
+golden_apple
+0 golden_apple
+1 enchanted_golden_apple
+-
+bed
+0 white_bed
+1 orange_bed
+2 magenta_bed
+3 light_blue_bed
+4 yellow_bed
+5 lime_bed
+6 pink_bed
+7 gray_bed
+8 light_gray_bed
+9 cyan_bed
+10 purple_bed
+11 blue_bed
+12 brown_bed
+13 green_bed
+14 red_bed
+15 black_bed
+-

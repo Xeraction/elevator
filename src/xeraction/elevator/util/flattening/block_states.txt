@@ -1,0 +1,600 @@
+stone ?
+variant=stone #stone
+variant=granite #granite
+variant=smooth_granite #polished_granite
+variant=diorite #diorite
+variant=smooth_diorite #polished_diorite
+variant=andesite #andesite
+variant=smooth_andesite #polished_andesite
+? #stone
+/variant
+-
+grass grass_block
+-
+dirt ?
+variant=dirt #dirt /snowy
+variant=coarse_dirt #coarse_dirt /snowy
+variant=podzol #podzol
+? #dirt /snowy
+/variant
+-
+planks ?
+variant=oak #oak_planks
+variant=spruce #spruce_planks
+variant=birch #birch_planks
+variant=jungle #jungle_planks
+variant=acacia #acacia_planks
+variant=dark_oak #dark_oak_planks
+? #oak_planks
+/variant
+-
+sapling ?
+type=oak #oak_sapling
+type=spruce #spruce_sapling
+type=birch #birch_sapling
+type=jungle #jungle_sapling
+type=acacia #acacia_sapling
+type=dark_oak #dark_oak_sapling
+? #oak_sapling
+/type
+-
+flowing_water water
+-
+flowing_lava lava
+-
+sand ?
+variant=sand #sand
+variant=red_sand #red_sand
+? #sand
+/variant
+-
+log ?
+variant=oak,axis=none #oak_wood /*
+variant=spruce,axis=none #spruce_wood /*
+variant=birch,axis=none #birch_wood /*
+variant=jungle,axis=none #jungle_wood /*
+variant=oak #oak_log
+variant=spruce #spruce_log
+variant=birch #birch_log
+variant=jungle #jungle_log
+? #oak_log
+/variant
+-
+log2 ?
+variant=acacia,axis=none #acacia_wood /*
+variant=dark_oak,axis=none #dark_oak_wood /*
+variant=acacia #acacia_log
+variant=dark_oak #dark_oak_log
+? #acacia_log
+/variant
+-
+leaves ?
+variant=oak #oak_leaves
+variant=spruce #spruce_leaves
+variant=birch #birch_leaves
+variant=jungle #jungle_leaves
+decayable=true persistent=false
+decayable=false persistent=true
+? #oak_leaves
+/variant
+/decayable
+/check_decay
+-
+leaves2 ?
+variant=acacia #acacia_leaves
+variant=dark_oak #dark_oak_leaves
+decayable=true persistent=false
+decayable=false persistent=true
+? #acacia_leaves
+/variant
+/decayable
+/check_decay
+-
+sponge ?
+wet=false #sponge
+wet=true #wet_sponge
+/wet
+-
+sandstone ?
+type=sandstone #sandstone
+type=chiseled_sandstone #chiseled_sandstone
+type=smooth_sandstone #cut_sandstone
+? #sandstone
+/type
+-
+noteblock note_block +
+-
+bed bed +
+-
+golden_rail powered_rail
+-
+web cobweb
+-
+tallgrass ?
+type=dead_bush #dead_bush
+type=tall_grass #grass
+type=fern #fern
+? #grass
+/type
+-
+deadbush dead_bush
+-
+wool ?
+color=white #white_wool
+color=orange #orange_wool
+color=magenta #magenta_wool
+color=light_blue #light_blue_wool
+color=yellow #yellow_wool
+color=lime #lime_wool
+color=pink #pink_wool
+color=gray #gray_wool
+color=silver #light_gray_wool
+color=cyan #cyan_wool
+color=purple #purple_wool
+color=blue #blue_wool
+color=brown #brown_wool
+color=green #green_wool
+color=red #red_wool
+color=black #black_wool
+? #white_wool
+/color
+-
+piston_extension moving_piston
+/extended
+-
+yellow_flower dandelion
+/type
+-
+red_flower ?
+type=poppy #poppy
+type=blue_orchid #blue_orchid
+type=allium #allium
+type=houstonia #azure_bluet
+type=red_tulip #red_tulip
+type=orange_tulip #orange_tulip
+type=white_tulip #white_tulip
+type=pink_tulip #pink_tulip
+type=oxeye_daisy #oxeye_daisy
+? #poppy
+/type
+-
+double_stone_slab ?
+variant=stone,seamless=true #smooth_stone
+variant=sandstone,seamless=true #smooth_sandstone
+variant=quartz,seamless=true #smooth_quartz
+variant=stone #smooth_stone_slab type=double
+variant=sandstone #sandstone_slab type=double
+variant=wood_old #petrified_oak_slab type=double
+variant=cobblestone #cobblestone_slab type=double
+variant=brick #brick_slab type=double
+variant=stone_brick #stone_brick_slab type=double
+variant=nether_brick #nether_brick_slab type=double
+variant=quartz #quartz_slab type=double
+? #smooth_stone_slab type=double
+/variant
+/seamless
+-
+double_stone_slab2 ?
+seamless=true #smooth_red_sandstone
+seamless=false #red_sandstone_slab type=double
+? #red_sandstone_slab type=double
+/variant
+/seamless
+-
+stone_slab ?
+variant=stone #stone_slab
+variant=sandstone #sandstone_slab
+variant=wood_old #petrified_oak_slab
+variant=cobblestone #cobblestone_slab
+variant=brick #brick_slab
+variant=stone_brick #stone_brick_slab
+variant=nether_brick #nether_brick_slab
+variant=quartz #quartz_slab
+half=bottom type=bottom
+half=top type=top
+? #stone_slab
+/variant
+/half
+-
+stone_slab2 red_sandstone_slab
+half=bottom type=bottom
+half=top type=top
+/variant
+/half
+-
+brick_block bricks
+-
+tnt tnt
+/explode
+-
+torch ?
+facing=up #torch /facing
+facing=north #wall_torch
+facing=east #wall_torch
+facing=south #wall_torch
+facing=west #wall_torch
+? #torch /facing
+-
+mob_spawner spawner
+-
+lit_furnace furnace
+* lit=true
+-
+standing_sign sign
+-
+wooden_door oak_door
+-
+stone_stairs cobblestone_stairs
+-
+lever lever
+facing=up_x face=floor facing=east
+facing=down_x face=ceiling facing=east
+facing=up_z face=floor facing=south
+facing=down_z face=ceiling facing=south
+-
+wooden_pressure_plate oak_pressure_plate
+-
+lit_redstone_ore redstone_ore
+* lit=true
+-
+unlit_redstone_torch ?
+facing=up #redstone_torch lit=false /facing
+facing=north #redstone_wall_torch lit=false
+facing=east #redstone_wall_torch lit=false
+facing=south #redstone_wall_torch lit=false
+facing=west #redstone_wall_torch lit=false
+? #redstone_torch lit=false /facing
+-
+redstone_torch ?
+facing=up #redstone_torch /facing
+facing=north #redstone_wall_torch
+facing=east #redstone_wall_torch
+facing=south #redstone_wall_torch
+facing=west #redstone_wall_torch
+? #redstone_torch /facing
+-
+stone_button stone_button
+facing=up face=floor facing=south
+facing=down face=ceiling facing=south
+-
+snow_layer snow
+-
+snow snow_block
+-
+reeds sugar_cane
+-
+fence oak_fence
+-
+pumpkin carved_pumpkin
+-
+portal nether_portal
+-
+lit_pumpkin jack_o_lantern
+-
+unpowered_repeater repeater
+-
+powered_repeater repeater
+* powered=true
+-
+stained_glass ?
+color=white #white_stained_glass
+color=orange #orange_stained_glass
+color=magenta #magenta_stained_glass
+color=light_blue #light_blue_stained_glass
+color=yellow #yellow_stained_glass
+color=lime #lime_stained_glass
+color=pink #pink_stained_glass
+color=gray #gray_stained_glass
+color=silver #light_gray_stained_glass
+color=cyan #cyan_stained_glass
+color=purple #purple_stained_glass
+color=blue #blue_stained_glass
+color=brown #brown_stained_glass
+color=green #green_stained_glass
+color=red #red_stained_glass
+color=black #black_stained_glass
+? #white_stained_glass
+/color
+-
+trapdoor oak_trapdoor
+-
+monster_egg ?
+variant=stone #infested_stone
+variant=cobblestone #infested_cobblestone
+variant=stone_brick #infested_stone_bricks
+variant=mossy_brick #infested_mossy_stone_bricks
+variant=cracked_brick #infested_cracked_stone_bricks
+variant=chiseled_brick #infested_chiseled_stone_bricks
+? #infested_stone
+/variant
+-
+stonebrick ?
+variant=stonebrick #stone_bricks
+variant=mossy_stonebrick #mossy_stone_bricks
+variant=cracked_stonebrick #cracked_stone_bricks
+variant=chiseled_stonebrick #chiseled_stone_bricks
+? #stone_bricks
+/variant
+-
+brown_mushroom_block ?
+variant=all_inside #brown_mushroom_block up=false down=false north=false south=false east=false west=false
+variant=north_west #brown_mushroom_block down=false south=false east=false
+variant=north #brown_mushroom_block down=false south=false east=false west=false
+variant=north_east #brown_mushroom_block down=false south=false west=false
+variant=west #brown_mushroom_block down=false north=false south=false east=false
+variant=center #brown_mushroom_block down=false north=false south=false east=false west=false
+variant=east #brown_mushroom_block down=false north=false south=false west=false
+variant=south_west #brown_mushroom_block down=false north=false east=false
+variant=south #brown_mushroom_block down=false north=false east=false west=false
+variant=south_east #brown_mushroom_block down=false north=false west=false
+variant=stem #mushroom_stem up=false down=false
+variant=all_outside #brown_mushroom_block
+variant=all_stem #mushroom_stem
+? #brown_mushroom_block
+/variant
+-
+red_mushroom_block ?
+variant=all_inside #red_mushroom_block up=false down=false north=false south=false east=false west=false
+variant=north_west #red_mushroom_block down=false south=false east=false
+variant=north #red_mushroom_block down=false south=false east=false west=false
+variant=north_east #red_mushroom_block down=false south=false west=false
+variant=west #red_mushroom_block down=false north=false south=false east=false
+variant=center #red_mushroom_block down=false north=false south=false east=false west=false
+variant=east #red_mushroom_block down=false north=false south=false west=false
+variant=south_west #red_mushroom_block down=false north=false east=false
+variant=south #red_mushroom_block down=false north=false east=false west=false
+variant=south_east #red_mushroom_block down=false north=false west=false
+variant=stem #mushroom_stem up=false down=false
+variant=all_outside #red_mushroom_block
+variant=all_stem #mushroom_stem
+? #red_mushroom_block
+/variant
+-
+melon_block melon
+-
+pumpkin_stem ?
+facing=up #pumpkin_stem /facing
+facing=north #attached_pumpkin_stem /age
+facing=south #attached_pumpkin_stem /age
+facing=east #attached_pumpkin_stem /age
+facing=west #attached_pumpkin_stem /age
+? #pumpkin_stem /facing
+-
+melon_stem ?
+facing=up #melon_stem /facing
+facing=north #attached_melon_stem /age
+facing=south #attached_melon_stem /age
+facing=east #attached_melon_stem /age
+facing=west #attached_melon_stem /age
+? #melon_stem /facing
+-
+fence_gate oak_fence_gate
+-
+waterlily lily_pad
+-
+nether_brick nether_bricks
+-
+lit_redstone_lamp redstone_lamp
+* lit=true
+-
+double_wooden_slab ?
+variant=oak #oak_slab type=double
+variant=spruce #spruce_slab type=double
+variant=birch #birch_slab type=double
+variant=jungle #jungle_slab type=double
+variant=acacia #acacia_slab type=double
+variant=dark_oak #dark_oak_slab type=double
+? #oak_slab type=double
+/variant
+-
+wooden_slab ?
+variant=oak #oak_slab
+variant=spruce #spruce_slab
+variant=birch #birch_slab
+variant=jungle #jungle_slab
+variant=acacia #acacia_slab
+variant=dark_oak #dark_oak_slab
+half=bottom type=bottom
+half=top type=top
+? #oak_slab
+/variant
+/half
+-
+cobblestone_wall ?
+variant=cobblestone #cobblestone_wall
+variant=mossy_cobblestone #mossy_cobblestone_wall
+? #cobblestone_wall
+/variant
+-
+flower_pot flower_pot +
+/legacy_data
+/contents
+-
+wooden_button oak_button
+facing=up face=floor facing=south
+facing=down face=ceiling facing=south
+-
+skull ? +
+facing=up /facing #skeleton_skull
+facing=down /facing #skeleton_skull
+? #skeleton_wall_skull
+/nodrop
+-
+anvil ?
+damage=0 #anvil
+damage=1 #chipped_anvil
+damage=2 #damaged_anvil
+? #anvil
+/damage
+-
+unpowered_comparator comparator
+-
+powered_comparator comparator
+-
+quartz_ore nether_quartz_ore
+-
+quartz_block ?
+variant=default #quartz_block
+variant=chiseled #chiseled_quartz_block
+variant=lines_y #quartz_pillar axis=y
+variant=lines_x #quartz_pillar axis=x
+variant=lines_z #quartz_pillar axis=z
+? #quartz_block
+/variant
+-
+stained_hardened_clay ?
+color=white #white_terracotta
+color=orange #orange_terracotta
+color=magenta #magenta_terracotta
+color=light_blue #light_blue_terracotta
+color=yellow #yellow_terracotta
+color=lime #lime_terracotta
+color=pink #pink_terracotta
+color=gray #gray_terracotta
+color=silver #light_gray_terracotta
+color=cyan #cyan_terracotta
+color=purple #purple_terracotta
+color=blue #blue_terracotta
+color=brown #brown_terracotta
+color=green #green_terracotta
+color=red #red_terracotta
+color=black #black_terracotta
+? #white_terracotta
+/color
+-
+stained_glass_pane ?
+color=white #white_stained_glass_pane
+color=orange #orange_stained_glass_pane
+color=magenta #magenta_stained_glass_pane
+color=light_blue #light_blue_stained_glass_pane
+color=yellow #yellow_stained_glass_pane
+color=lime #lime_stained_glass_pane
+color=pink #pink_stained_glass_pane
+color=gray #gray_stained_glass_pane
+color=silver #light_gray_stained_glass_pane
+color=cyan #cyan_stained_glass_pane
+color=purple #purple_stained_glass_pane
+color=blue #blue_stained_glass_pane
+color=brown #brown_stained_glass_pane
+color=green #green_stained_glass_pane
+color=red #red_stained_glass_pane
+color=black #black_stained_glass_pane
+? #white_stained_glass_pane
+/color
+-
+slime slime_block
+-
+prismarine ?
+variant=prismarine #prismarine
+variant=prismarine_bricks #prismarine_bricks
+variant=dark_prismarine #dark_prismarine
+? #prismarine
+/variant
+-
+carpet ?
+color=white #white_carpet
+color=orange #orange_carpet
+color=magenta #magenta_carpet
+color=light_blue #light_blue_carpet
+color=yellow #yellow_carpet
+color=lime #lime_carpet
+color=pink #pink_carpet
+color=gray #gray_carpet
+color=silver #light_gray_carpet
+color=cyan #cyan_carpet
+color=purple #purple_carpet
+color=blue #blue_carpet
+color=brown #brown_carpet
+color=green #green_carpet
+color=red #red_carpet
+color=black #black_carpet
+? #white_carpet
+/color
+-
+hardened_clay terracotta
+-
+double_plant ?
+variant=sunflower #sunflower
+variant=syringa #lilac
+variant=double_grass #tall_grass
+variant=double_fern #large_fern
+variant=double_rose #rose_bush
+variant=paeonia #peony
+? #sunflower
+/variant
+/facing
+-
+standing_banner ? +
+-
+wall_banner ? +
+-
+daylight_detector_inverted daylight_detector
+* inverted=true
+-
+red_sandstone ?
+type=red_sandstone #red_sandstone
+type=chiseled_red_sandstone #chiseled_red_sandstone
+type=smooth_red_sandstone #cut_red_sandstone
+? #red_sandstone
+/type
+-
+purpur_double_slab purpur_slab
+* type=double
+/variant
+-
+purpur_slab purpur_slab
+half=bottom type=bottom
+half=top type=top
+/variant
+/half
+-
+end_bricks end_stone_bricks
+-
+magma magma_block
+-
+red_nether_brick red_nether_bricks
+-
+silver_shulker_box light_gray_shulker_box
+-
+silver_glazed_terracotta light_gray_glazed_terracotta
+-
+concrete ?
+color=white #white_concrete
+color=orange #orange_concrete
+color=magenta #magenta_concrete
+color=light_blue #light_blue_concrete
+color=yellow #yellow_concrete
+color=lime #lime_concrete
+color=pink #pink_concrete
+color=gray #gray_concrete
+color=silver #light_gray_concrete
+color=cyan #cyan_concrete
+color=purple #purple_concrete
+color=blue #blue_concrete
+color=brown #brown_concrete
+color=green #green_concrete
+color=red #red_concrete
+color=black #black_concrete
+? #white_concrete
+/color
+-
+concrete_powder ?
+color=white #white_concrete_powder
+color=orange #orange_concrete_powder
+color=magenta #magenta_concrete_powder
+color=light_blue #light_blue_concrete_powder
+color=yellow #yellow_concrete_powder
+color=lime #lime_concrete_powder
+color=pink #pink_concrete_powder
+color=gray #gray_concrete_powder
+color=silver #light_gray_concrete_powder
+color=cyan #cyan_concrete_powder
+color=purple #purple_concrete_powder
+color=blue #blue_concrete_powder
+color=brown #brown_concrete_powder
+color=green #green_concrete_powder
+color=red #red_concrete_powder
+color=black #black_concrete_powder
+? #white_concrete_powder
+/color
+-
