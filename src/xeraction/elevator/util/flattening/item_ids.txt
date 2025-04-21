@@ -191,7 +191,7 @@
 446 jungle_boat
 447 acacia_boat
 448 dark_oak_boat
-449 totem_of_undying;
+449 totem_of_undying
 450 shulker_shell
 452 iron_nugget
 453 knowledge_book

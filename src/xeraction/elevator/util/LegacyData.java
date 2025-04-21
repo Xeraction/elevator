@@ -377,7 +377,7 @@ public class LegacyData {
             case "largesmoke" -> "large_smoke";
             case "magiccrit" -> "enchanted_hit";
             case "mobappearance" -> "elder_guardian";
-            case "mobspell", "mobSpellAmbient", "ambient_entity_effect" -> "entity_effect";
+            case "mobspell", "mobspellambient", "ambient_entity_effect" -> "entity_effect";
             case "reddust" -> "dust";
             case "slime" -> "item_slime";
             case "snowballpoof" -> "item_snowball";
