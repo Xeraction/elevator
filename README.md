@@ -11,7 +11,7 @@ Numeric block and item ids and their metadata from before 1.13 will upgrade. The
 ## Usage
 java -jar elevator.jar \<options\> \<path\>
 
-The tool has 3 modes: world mode, file mode, and single mode. One of those is required.
+The tool has 4 modes: world mode, file mode, single mode, and changed mode. One of those is required.
 ### World Mode
 - Option: -world / -w
 - Upgrades the commands of an entire world. Specifiy the path to the world folder. BACK UP YOUR WORLD BEFORE USING! Things can always go wrong.
