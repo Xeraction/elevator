@@ -273,6 +273,7 @@ public class Elevator {
         commands.put("debug", DebugCommand.SEQUENCE);
         commands.put("defaultgamemode", DefaultgamemodeCommand.SEQUENCE);
         commands.put("deop", DeopCommand.SEQUENCE);
+        commands.put("dialog", DialogCommand.SEQUENCE);
         commands.put("difficulty", DifficultyCommand.SEQUENCE);
         commands.put("effect", EffectCommand.SEQUENCE);
         commands.put("enchant", EnchantCommand.SEQUENCE);
@@ -338,7 +339,9 @@ public class Elevator {
         commands.put("tp", TeleportCommand.SEQUENCE);
         commands.put("transfer", TransferCommand.SEQUENCE);
         commands.put("trigger", TriggerCommand.SEQUENCE);
+        commands.put("version", VersionCommand.SEQUENCE);
         commands.put("w", MsgCommand.SEQUENCE);
+        commands.put("waypoint", WaypointCommand.SEQUENCE);
         commands.put("weather", WeatherCommand.SEQUENCE);
         commands.put("whitelist", WhitelistCommand.SEQUENCE);
         commands.put("worldborder", WorldborderCommand.SEQUENCE);

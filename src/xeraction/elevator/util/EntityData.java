@@ -207,6 +207,7 @@ public class EntityData {
                     if (!content.isEmpty())
                         tag.add(new SNBT.Compound("potion_contents", content));
                 }
+                tag.rename("Particle", "custom_particle");
             }
             case "arrow", "spectral_arrow" -> {
                 tag.rename("CustomPotionEffects", "custom_potion_effects");

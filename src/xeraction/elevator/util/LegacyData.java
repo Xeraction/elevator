@@ -458,7 +458,16 @@ public class LegacyData {
             case "zombie_pig", "zombie_pigman" -> "zombified_piglin";
             default -> split[1];
         };
-        return "minecraft:" + split[0] + "." + middle + "." + split[2];
+        old = split[0] + "." + middle + "." + split[2];
+
+        //add new renames into here, upstairs is a mess
+        switch (old) {
+            case "block.sand.wind" -> old = "block.dry_grass.ambient";
+            case "entity.leash_knot.break" -> old = "item.lead.break"; //could also be item.lead.untied but whatever
+            case "entity.leash_knot.place" -> old = "item.lead.tied";
+        }
+
+        return "minecraft:" + old;
     }
 
     private static String renamePre1_9Sound(String old) {
