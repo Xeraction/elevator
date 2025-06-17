@@ -21,6 +21,9 @@ The tool has 3 modes: world mode, file mode, and single mode. One of those is re
 ### Single Mode
 - Option: -single / -s
 - Upgrades a single command. Directly input the command as the last argument. Mostly for quick testing purposes on my side as quotes need to be escaped. Wouldn't recommend anyone to actually use it.
+### Changed Mode
+- Option: -changed / -c
+- Debug mode reducing the debug.txt file that gets created with the -debug option to only those commands that have been changed by the tool. Useful for quickly spotting upgraded commands (or errors).
 
 ### Optional Options
 - -debug / -d : Prints additional debug information, creates a log file and doesn't save in world and file mode.

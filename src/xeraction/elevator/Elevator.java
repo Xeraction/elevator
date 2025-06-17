@@ -36,6 +36,7 @@ public class Elevator {
             System.out.println("-world / -w : Elevates an entire world");
             System.out.println("-file / -f : Elevates a file with commands (one command per line, FUNCTION MACROS ARE NOT SUPPORTED)");
             System.out.println("-single / -s : Elevates a single command (remember to escape quotes)");
+            System.out.println("-changed / -c : Debug mode reducing the debug.txt to only the commands that have been changed");
             System.out.println(" ");
             System.out.println("#these are optional#");
             System.out.println("-debug / -d : Prints out additional details and doesn't save in world and file mode");
@@ -57,6 +58,7 @@ public class Elevator {
                 case "-world", "-w" -> mode = Mode.World;
                 case "-file", "-f" -> mode = Mode.File;
                 case "-single", "-s" -> mode = Mode.Single;
+                case "-changed", "-c" -> mode = Mode.Changed;
                 case "-debug", "-d" -> debug = true;
                 case "-tp", "-t" -> executeTP = true;
                 default -> {
@@ -163,9 +165,54 @@ public class Elevator {
                 if (cmd != null)
                     debugLine(cmd.build());
             }
+            case Changed -> {
+                File debugFile = new File("debug.txt");
+                if (!debugFile.exists()) {
+                    System.out.println("No debug file found!");
+                    return;
+                }
+
+                try (BufferedReader reader = new BufferedReader(new FileReader(debugFile)); BufferedWriter writer = new BufferedWriter(new FileWriter(debugFile))) {
+                    StringBuilder builder = new StringBuilder();
+                    String line = reader.readLine();
+                    String first = null;
+                    boolean skipUntilBlank = false;
+                    while (line != null) {
+                        if (skipUntilBlank && line.isBlank()) {
+                            skipUntilBlank = false;
+                            continue;
+                        }
+                        if (line.startsWith("WARNING")) {
+                            skipUntilBlank = true;
+                            continue;
+                        }
+                        if (line.isBlank() || line.startsWith("->") || Character.isDigit(line.charAt(0)) || line.startsWith("r."))
+                            continue;
+                        if (first == null)
+                            first = line;
+                        else {
+                            if (!first.equals(line)) {
+                                builder.append(first).append("\n->\n").append(line).append("\n");
+                            } else {
+                                first = null;
+                            }
+                        }
+
+                        line = reader.readLine();
+                    }
+
+                    if (builder.isEmpty())
+                        builder.append("No changed commands!");
+
+                    writer.write(builder.toString());
+                    writer.flush();
+                } catch (IOException e) {
+                    System.out.println("Failed to read debug log file.");
+                }
+            }
         }
 
-        if (debug) {
+        if (debug && mode != Mode.Changed) {
             File debugFile = new File("debug.txt");
             try {
                 if (!debugFile.exists())
@@ -248,7 +295,7 @@ public class Elevator {
     }
 
     private enum Mode {
-        World, File, Single
+        World, File, Single, Changed
     }
 
     private static final Map<String, ParseSequence<? extends Command>> commands = new HashMap<>();
