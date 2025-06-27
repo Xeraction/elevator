@@ -2,7 +2,9 @@ package net.querz.mca;
 
 import net.querz.nbt.tag.CompoundTag;
 import net.querz.nbt.tag.Tag;
+import xeraction.elevator.Elevator;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Arrays;
@@ -51,20 +53,25 @@ public class MCAFile implements Iterable<Chunk> {
 	 * */
 	public void deserialize(RandomAccessFile raf, long loadFlags) throws IOException {
 		chunks = new Chunk[1024];
-		for (int i = 0; i < 1024; i++) {
-			raf.seek(i * 4);
-			int offset = raf.read() << 16;
-			offset |= (raf.read() & 0xFF) << 8;
-			offset |= raf.read() & 0xFF;
-			if (raf.readByte() == 0) {
-				continue;
+		try {
+			for (int i = 0; i < 1024; i++) {
+				raf.seek(i * 4);
+				int offset = raf.read() << 16;
+				offset |= (raf.read() & 0xFF) << 8;
+				offset |= raf.read() & 0xFF;
+				if (raf.readByte() == 0) {
+					continue;
+				}
+				raf.seek(4096 + i * 4);
+				int timestamp = raf.readInt();
+				Chunk chunk = new Chunk(timestamp);
+				raf.seek(4096 * offset + 4); //+4: skip data size
+				chunk.deserialize(raf, loadFlags);
+				chunks[i] = chunk;
 			}
-			raf.seek(4096 + i * 4);
-			int timestamp = raf.readInt();
-			Chunk chunk = new Chunk(timestamp);
-			raf.seek(4096 * offset + 4); //+4: skip data size
-			chunk.deserialize(raf, loadFlags);
-			chunks[i] = chunk;
+		} catch (EOFException e) {
+			Elevator.warn("Invalid/Corrupted/Empty MCA File.");
+			e.printStackTrace();
 		}
 	}
 
