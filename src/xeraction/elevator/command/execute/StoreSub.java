@@ -20,7 +20,7 @@ public class StoreSub implements Subcommand {
 
     public String build() {
         StringBuilder b = new StringBuilder("store ").append(result ? "result " : "success ");
-        b.append(mode).append(" ");
+        b.append(mode.name).append(" ");
         switch (mode) {
             case Block, Entity, Storage -> b.append(target).append(" ").append(path.build()).append(" ").append(type).append(" ").append(scale);
             case Bossbar -> b.append(general).append(max ? " max" : " value");

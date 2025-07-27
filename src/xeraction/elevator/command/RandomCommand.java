@@ -14,7 +14,7 @@ public class RandomCommand implements Command {
     private String seqId;
 
     public String build() {
-        StringBuilder b = new StringBuilder("reset ").append(mode.name).append(" ");
+        StringBuilder b = new StringBuilder("random ").append(mode.name).append(" ");
         if (mode == Mode.Reset) {
             b.append(sequence);
             if (seed != null)
