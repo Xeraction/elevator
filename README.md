@@ -21,12 +21,10 @@ The tool has 4 modes: world mode, file mode, single mode, and changed mode. One 
 ### Single Mode
 - Option: -single / -s
 - Upgrades a single command. Directly input the command as the last argument. Mostly for quick testing purposes on my side as quotes need to be escaped. Wouldn't recommend anyone to actually use it.
-### Changed Mode
-- Option: -changed / -c
-- Debug mode reducing the debug.txt file that gets created with the -debug option to only those commands that have been changed by the tool. Useful for quickly spotting upgraded commands (or errors).
 
 ### Optional Options
 - -debug / -d : Prints additional debug information, creates a log file and doesn't save in world and file mode.
+- -no-warnings / -nw : Doesn't print command warnings (mostly NBT-related). Still prints errors.
 - -tp / -t : Puts tp commands that use ~-notation in an execute command to be executed by the target due to changes to command execution locations.
 
 I recommend running the tool in debug mode first and then do a quick check through the upgraded commands in the log file and verify the more complicated ones, especially when it comes to NBT data. DO NOT 100% RELY ON THIS TOOL!

@@ -18,6 +18,7 @@ public class Elevator {
     private static boolean debug = false;
     public static boolean executeTP = false;
     private static Mode mode = null;
+    private static boolean noWarnings = false;
     private static int upgradesCommands = 0;
 
     private static int currentX = 0;
@@ -40,6 +41,7 @@ public class Elevator {
             System.out.println(" ");
             System.out.println("#these are optional#");
             System.out.println("-debug / -d : Prints out additional details and doesn't save in world and file mode");
+            System.out.println("-no-warnings / -nw : Doesn't print command warnings (mostly NBT-related). Still prints errors.");
             System.out.println("-tp / -t : Puts tp commands that use ~-notation in an execute command to be executed by the target due to changes to command execution locations");
             System.out.println(" ");
             System.out.println("<value> :");
@@ -59,6 +61,7 @@ public class Elevator {
                 case "-file", "-f" -> mode = Mode.File;
                 case "-single", "-s" -> mode = Mode.Single;
                 case "-debug", "-d" -> debug = true;
+                case "-no-warnings", "-nw" -> noWarnings = true;
                 case "-tp", "-t" -> executeTP = true;
                 default -> {
                     System.out.println("Unknown option " + args[i]);
@@ -250,6 +253,9 @@ public class Elevator {
     }
 
     public static void warn(String msg) {
+        if (noWarnings)
+            return;
+
         debugLine("");
         if (mode == Mode.World)
             debugLine("WARNING FOR COMMAND AT " + currentX + " " + currentY + " " + currentZ + ":");
