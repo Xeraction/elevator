@@ -125,20 +125,19 @@ public class LegacyData {
             case "grass_path" -> "dirt_path";
             case "sign" -> "oak_sign";
             case "wall_sign" -> "oak_wall_sign";
+            case "chain" -> "iron_chain";
             default -> old;
         };
     }
 
     public static String renameItemId(String old) {
-        old = old.toLowerCase();
+        old = renameBlockId(old).toLowerCase();
         if (old.startsWith("minecraft:"))
             old = old.substring(10);
         if (old.startsWith("record_"))
             return "minecraft:music_disc_" + old.substring(7);
         return "minecraft:" + switch (old) {
-            case "grass" -> "short_grass";
             case "scute" -> "turtle_scute";
-            case "sign" -> "oak_sign";
             case "dandelion_yellow" -> "yellow_dye";
             case "cactus_green" -> "green_dye";
             case "rose_red" -> "red_dye";

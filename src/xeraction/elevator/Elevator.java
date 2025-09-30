@@ -296,6 +296,7 @@ public class Elevator {
         commands.put("enchant", EnchantCommand.SEQUENCE);
         commands.put("execute", ExecuteCommand.SEQUENCE);
         commands.put("experience", ExperienceCommand.SEQUENCE);
+        commands.put("fetchprofile", FetchprofileCommand.SEQUENCE);
         commands.put("fill", FillCommand.SEQUENCE);
         commands.put("fillbiome", FillbiomeCommand.SEQUENCE);
         commands.put("forceload", ForceloadCommand.SEQUENCE);

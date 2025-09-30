@@ -8,7 +8,6 @@ import java.util.List;
 
 public class BlockEntityData {
 
-    //notice: block entities added after 1.21.5 don't need to upgrade items
     public static void elevateBlockEntity(SNBT.Compound tag, String beId) {
 
         if (tag.contains("components"))

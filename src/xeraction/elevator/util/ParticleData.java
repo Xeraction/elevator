@@ -19,6 +19,10 @@ public class ParticleData {
                 tag.rename("fromColor", "from_color");
                 tag.rename("toColor", "to_color");
             }
+            case "flash" -> {
+                if (!tag.contains("color"))
+                    tag.add(new SNBT.Int("color", 0xffffffff)); //white as default color
+            }
             case "trail" -> tag.add(new SNBT.Int("duration", 20)); //TODO find the real default for this
         }
     }

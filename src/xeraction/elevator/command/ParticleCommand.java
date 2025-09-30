@@ -104,6 +104,7 @@ public class ParticleCommand implements Command {
                         }
                         iterator.setPointer(pointer);
                     }
+                    case "minecraft:flash" -> options.add(new SNBT.Int("color", 0xffffffff));
                     case "minecraft:item" -> options.add(new SNBT.Strings("item", LegacyData.renameItemId(iterator.readWord())));
                     case "minecraft:shriek" -> options.add(new SNBT.Int("delay", Integer.parseInt(iterator.readWord())));
                     case "minecraft:vibration" -> {
