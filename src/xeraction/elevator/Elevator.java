@@ -19,7 +19,7 @@ public class Elevator {
     public static boolean executeTP = false;
     private static Mode mode = null;
     private static boolean noWarnings = false;
-    private static int upgradesCommands = 0;
+    private static int upgradedCommands = 0;
 
     private static int currentX = 0;
     private static int currentY = 0;
@@ -170,10 +170,10 @@ public class Elevator {
         }
 
         debugLine("");
-        if (upgradesCommands == 0)
+        if (upgradedCommands == 0)
             debugLine("All commands are up to date!");
         else
-            debugLine("Upgraded " + upgradesCommands + " commands.");
+            debugLine("Upgraded " + upgradedCommands + " commands.");
 
         if (debug) {
             File debugFile = new File("debug.txt");
@@ -213,7 +213,7 @@ public class Elevator {
 
             boolean same = command.equals(parsed.build());
             if (!same)
-                upgradesCommands++;
+                upgradedCommands++;
 
             if (debug && !same) {
                 debugLine("");
@@ -342,6 +342,7 @@ public class Elevator {
         commands.put("spreadplayers", SpreadplayersCommand.SEQUENCE);
         commands.put("stop", StopCommand.SEQUENCE);
         commands.put("stopsound", StopsoundCommand.SEQUENCE);
+        commands.put("stopwatch", StopwatchCommand.SEQUENCE);
         commands.put("summon", SummonCommand.SEQUENCE);
         commands.put("tag", TagCommand.SEQUENCE);
         commands.put("team", TeamCommand.SEQUENCE);

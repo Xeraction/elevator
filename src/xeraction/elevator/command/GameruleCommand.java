@@ -2,13 +2,19 @@ package xeraction.elevator.command;
 
 import xeraction.elevator.ParseSequence;
 import xeraction.elevator.argument.StringArgument;
+import xeraction.elevator.util.LegacyData;
 
 public class GameruleCommand implements Command {
     private String rule;
     private String value;
+    private boolean upgraded = false;
 
     public String build() {
-        return "gamerule " + rule + (value != null ? " " + value : "");
+        if (!upgraded) {
+            rule = LegacyData.renameGameRule(rule, value);
+            upgraded = true;
+        }
+        return "gamerule " + rule;
     }
 
     public static final ParseSequence<GameruleCommand> SEQUENCE = new ParseSequence<>(GameruleCommand::new)

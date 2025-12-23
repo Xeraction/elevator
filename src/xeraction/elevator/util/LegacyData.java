@@ -793,6 +793,153 @@ public class LegacyData {
         };
     }
 
+    public static String renameGameRule(String oldRule, String oldValue) {
+        if (oldRule.startsWith("minecraft:"))
+            oldRule = oldRule.substring(10);
+
+        String newValue = "";
+        String renamed = switch (oldRule) {
+            case "allowEnteringNetherUsingPortals" -> "allow_entering_nether_using_portals";
+            case "allowFireTicksAwayFromPlayer" -> {
+                if (oldValue != null) {
+                    if (oldValue.equals("true"))
+                        newValue = "-1";
+                    else if (oldValue.equals("false"))
+                        newValue = "128";
+                }
+                yield "fire_spread_radius_around_player";
+            }
+            case "announceAdvancements" -> "show_advancement_messages";
+            case "blockExplosionDropDecay" -> "block_explosion_drop_decay";
+            case "commandBlocksEnabled" -> "command_blocks_work";
+            case "commandBlockOutput" -> "command_block_output";
+            case "commandModificationBlockLimit" -> {
+                newValue = minS(oldValue, 1);
+                yield "max_block_modifications";
+            }
+            case "disableElytraMovementCheck" -> {
+                newValue = invB(oldValue);
+                yield "elytra_movement_check";
+            }
+            case "disablePlayerMovementCheck" -> {
+                newValue = invB(oldValue);
+                yield "player_movement_check";
+            }
+            case "disableRaids" -> {
+                newValue = invB(oldValue);
+                yield "#raids";
+            }
+            case "doDaylightCycle" -> "advance_time";
+            case "doEntityDrops" -> "entity_drops";
+            case "doFireTick" -> {
+                if (oldValue != null) {
+                    if (oldValue.equals("true"))
+                        newValue = "128";
+                    else if (oldValue.equals("false"))
+                        newValue = "0";
+                }
+                yield "fire_spread_radius_around_player";
+            }
+            case "doImmediateRespawn" -> "immediate_respawn";
+            case "doInsomnia" -> "spawn_phantoms";
+            case "doLimitedCrafting" -> "limited_crafting";
+            case "doMobLoot" -> "mob_drops";
+            case "doMobSpawning" -> "spawn_mobs";
+            case "doPatrolSpawning" -> "spawn_patrols";
+            case "doTileDrops" -> "block_drops";
+            case "doTraderSpawning" -> "spawn_wandering_traders";
+            case "doVinesSpread" -> "spread_vines";
+            case "doWardenSpawning" -> "spawn_wardens";
+            case "doWeatherCycle" -> "advance_weather";
+            case "drowningDamage" -> "drowning_damage";
+            case "enderPearlsVanishOnDeath" -> "ender_pearls_vanish_on_death";
+            case "fallDamage" -> "fall_damage";
+            case "fireDamage" -> "fire_damage";
+            case "forgiveDeadPlayers" -> "forgive_dead_players";
+            case "freezeDamage" -> "freeze_damage";
+            case "globalSoundEvents" -> "global_sound_events";
+            case "keepInventory" -> "keep_inventory";
+            case "lavaSourceConversion" -> "lava_source_conversion";
+            case "locatorBar" -> "locator_bar";
+            case "logAdminCommands" -> "log_admin_commands";
+            case "maxCommandChainLength" -> {
+                newValue = minS(oldValue, 0);
+                yield "max_command_sequence_length";
+            }
+            case "maxCommandForkCount" -> {
+                newValue = minS(oldValue, 0);
+                yield "max_command_forks";
+            }
+            case "maxEntityCramming" -> {
+                newValue = minS(oldValue, 0);
+                yield "max_entity_cramming";
+            }
+            case "minecartMaxSpeed" -> "max_minecart_speed";
+            case "mobExplosionDropDecay" -> "mob_explosion_drop_decay";
+            case "mobGriefing" -> "mob_griefing";
+            case "naturalRegeneration" -> "natural_health_regeneration";
+            case "playersNetherPortalCreativeDelay" -> {
+                newValue = minS(oldValue, 0);
+                yield "players_nether_portal_creative_delay";
+            }
+            case "playersNetherPortalDefaultDelay" -> {
+                newValue = minS(oldValue, 0);
+                yield "players_nether_portal_default_delay";
+            }
+            case "playersSleepingPercentage" -> {
+                newValue = minS(oldValue, 0);
+                yield "players_sleeping_percentage";
+            }
+            case "projectilesCanBreakBlocks" -> "projectiles_can_break_blocks";
+            case "randomTickSpeed" -> {
+                newValue = minS(oldValue, 0);
+                yield "random_tick_speed";
+            }
+            case "reducedDebugInfo" -> "reduced_debug_info";
+            case "sendCommandFeedback" -> "send_command_feedback";
+            case "showDeathMessages" -> "show_death_messages";
+            case "snowAccumulationHeight" -> {
+                newValue = minMaxS(oldValue, 0, 8);
+                yield "max_snow_accumulation_height";
+            }
+            case "spawnMonsters" -> "spawn_monsters";
+            case "spawnRadius" -> "respawn_radius";
+            case "spawnerBlocksEnabled" -> "spawner_blocks_work";
+            case "spectatorsGenerateChunks" -> "spectators_generate_chunks";
+            case "tntExplodes" -> "tnt_explodes";
+            case "tntExplosionDropDecay" -> "tnt_explosion_drop_decay";
+            case "universalAnger" -> "universal_anger";
+            case "waterSourceConversion" -> "water_source_conversion";
+            default -> oldRule;
+        };
+
+        if (!newValue.isBlank())
+            return renamed + " " + newValue;
+        if (oldValue != null)
+            return renamed + " " + oldValue;
+        return renamed;
+    }
+
+    private static String minS(String s, int min) {
+        return minMaxS(s, min, Integer.MAX_VALUE);
+    }
+
+    private static String minMaxS(String s, int min, int max) {
+        if (s == null)
+            return "";
+        return String.valueOf(Math.clamp(Integer.parseInt(s), min, max));
+    }
+
+    private static String invB(String s) {
+        if (s == null)
+            return "";
+        return switch (s) {
+            case "true" -> "false";
+            case "false" -> "true";
+            default -> s;
+        };
+    }
+
     private static final Map<Integer, String> blockIds = new HashMap<>();
     private static final Map<String, Map<Integer, String>> blockData = new HashMap<>();
     private static final Map<String, FlatState> blockStates = new HashMap<>();

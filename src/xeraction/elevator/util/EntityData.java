@@ -18,6 +18,12 @@ public class EntityData {
                 elevateEffect((SNBT.Compound)t);
         }
 
+        tag.rename("AngryAt", "angry_at");
+        if (tag.contains("AngerTime")) {
+            tag.add(new SNBT.Long("anger_end_time", tag.getInt("AngerTime")));
+            tag.remove("AngerTime");
+        }
+
         if (tag.contains("attributes")) {
             for (SNBT.Tag t : tag.getList("attributes")) {
                 SNBT.Compound c = (SNBT.Compound)t;
