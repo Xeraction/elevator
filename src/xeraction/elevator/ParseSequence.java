@@ -90,7 +90,7 @@ public class ParseSequence<C extends Command> {
             default -> n = new LiteralNode(iterator.readUntilKeep(c -> c == ' ' || c == '|' || c == ')' || c == ']' || c == '}'));
         }
         if (iterator.hasMore() && iterator.peek() == ' ')
-            n.next = parseNode(iterator);
+            n.append(parseNode(iterator));
         return n;
     }
 
@@ -102,10 +102,21 @@ public class ParseSequence<C extends Command> {
         return null;
     }
 
+    public String toString() {
+        return rootNode == null ? "null" : rootNode.toString();
+    }
+
     private static abstract class Node {
         protected Node next = null;
 
         public abstract boolean parse(StringIterator iterator);
+
+        public void append(Node node) {
+            if (next == null)
+                next = node;
+            else
+                next.append(node);
+        }
     }
 
     private class ParseNode<A extends Argument> extends Node {
