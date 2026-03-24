@@ -41,7 +41,7 @@ public class Elevator {
             System.out.println("-debug / -d : Prints out additional details and doesn't save in world and file mode");
             System.out.println("-no-warnings / -n : Doesn't print command warnings (mostly NBT-related). Still prints errors.");
             System.out.println("-tp / -t : Puts tp commands that use ~-notation in an execute command to be executed by the target due to changes to command execution locations");
-            System.out.println("-exclude / -x : World mode only: Excludes the specified dimensions from being upgraded (e.g. -x minecraft:the_nether,minecraft:the_end to only upgrade the overworld");
+            System.out.println("-exclude / -x : World mode only: Excludes the specified dimensions from being upgraded (e.g. -x minecraft:the_nether,minecraft:the_end to only upgrade the overworld)");
             System.out.println(" ");
             System.out.println("<value> :");
             System.out.println("  -in world mode: path to the world folder");
