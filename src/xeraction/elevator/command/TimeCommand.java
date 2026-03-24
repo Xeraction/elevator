@@ -6,18 +6,20 @@ import xeraction.elevator.argument.StringArgument;
 public class TimeCommand implements Command {
     private Mode mode;
     private String time;
+    private String clock;
 
     public String build() {
-        return "time " + mode.name + " " + time;
+        return "time " + (clock != null ? "of " + clock + " " : "") + mode.name + (time != null ? " " + time : "");
     }
 
     public static final ParseSequence<TimeCommand> SEQUENCE = new ParseSequence<>(TimeCommand::new)
-            .node("time", new StringArgument(), (arg, cmd) -> cmd.time = arg.value())
+            .node("time", new StringArgument(true), (arg, cmd) -> cmd.time = arg.value()) //sometimes there's an extra "repetition" argument in certain commands, so we're lazy and make the argument greedy
+            .node("clock", new StringArgument(), (arg, cmd) -> cmd.clock = arg.value())
             .lit((cmd, lit) -> cmd.mode = Mode.parse(lit))
-            .rule("time (add|query|set) <time>");
+            .rule("time {of <clock>} ((add|query|set|rate) <time>|(pause|resume))");
 
     private enum Mode {
-        Add("add"), Query("query"), Set("set");
+        Add("add"), Query("query"), Set("set"), Rate("rate"), Pause("pause"), Resume("resume");
 
         public final String name;
 

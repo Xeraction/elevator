@@ -920,6 +920,16 @@ public class LegacyData {
         return renamed;
     }
 
+    public static String renameSlot(String old) {
+        switch (old) {
+            case "horse.armor" -> old = "armor.body";
+            case "horse.saddle" -> old = "saddle";
+        }
+        if (old.startsWith("villager."))
+            old = "mob.inventory." + old.split("\\.")[1];
+        return old;
+    }
+
     private static String minS(String s, int min) {
         return minMaxS(s, min, Integer.MAX_VALUE);
     }

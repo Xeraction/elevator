@@ -9,10 +9,7 @@ import xeraction.elevator.command.legacy.*;
 import xeraction.elevator.util.LegacyData;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Elevator {
     private static boolean debug = false;
@@ -20,6 +17,7 @@ public class Elevator {
     private static Mode mode = null;
     private static boolean noWarnings = false;
     private static int upgradedCommands = 0;
+    private static final List<String> excludedDimensions = new ArrayList<>();
 
     private static int currentX = 0;
     private static int currentY = 0;
@@ -41,8 +39,9 @@ public class Elevator {
             System.out.println(" ");
             System.out.println("#these are optional#");
             System.out.println("-debug / -d : Prints out additional details and doesn't save in world and file mode");
-            System.out.println("-no-warnings / -nw : Doesn't print command warnings (mostly NBT-related). Still prints errors.");
+            System.out.println("-no-warnings / -n : Doesn't print command warnings (mostly NBT-related). Still prints errors.");
             System.out.println("-tp / -t : Puts tp commands that use ~-notation in an execute command to be executed by the target due to changes to command execution locations");
+            System.out.println("-exclude / -x : World mode only: Excludes the specified dimensions from being upgraded (e.g. -x minecraft:the_nether,minecraft:the_end to only upgrade the overworld");
             System.out.println(" ");
             System.out.println("<value> :");
             System.out.println("  -in world mode: path to the world folder");
@@ -61,8 +60,9 @@ public class Elevator {
                 case "-file", "-f" -> mode = Mode.File;
                 case "-single", "-s" -> mode = Mode.Single;
                 case "-debug", "-d" -> debug = true;
-                case "-no-warnings", "-nw" -> noWarnings = true;
+                case "-no-warnings", "-n" -> noWarnings = true;
                 case "-tp", "-t" -> executeTP = true;
+                case "-exclude", "-x" -> excludedDimensions.addAll(Arrays.stream(args[++i].split(",")).toList());
                 default -> {
                     System.out.println("Unknown option " + args[i]);
                     return;
@@ -91,41 +91,65 @@ public class Elevator {
 
         switch (mode) {
             case World -> {
-                File file = new File(path + "/region");
+                File file = new File(path + "/dimensions");
                 if (!file.exists()) {
                     debugLine("Could not find world folder " + path);
                     return;
                 }
                 try {
-                    File[] mcaFiles = file.listFiles((dir, name) -> name.endsWith(".mca"));
-                    if (mcaFiles == null) {
-                        debugLine("No region files found");
+                    File[] namespaces = file.listFiles(File::isDirectory);
+                    if (namespaces == null || namespaces.length == 0) {
+                        debugLine("No dimension namespaces found");
                         return;
                     }
-                    int count = 1;
-                    for (File f : mcaFiles) {
-                        debugLine("");
-                        debugLine(f.getName() + " (" + count++ + "/" + mcaFiles.length + ")");
-                        MCAFile mca = MCAUtil.read(f);
-                        for (Chunk chunk : mca) {
-                            if (chunk == null || chunk.getTileEntities() == null)
+
+                    for (File namespace : namespaces) {
+                        String nsn = namespace.getName();
+                        File[] dimensions = namespace.listFiles(File::isDirectory);
+                        if (dimensions == null || dimensions.length == 0) {
+                            debugLine("No dimensions found in namespace \"" + nsn + "\"");
+                            continue;
+                        }
+
+                        for (File dimension : dimensions) {
+                            String dn = nsn + ":" + dimension.getName();
+                            if (excludedDimensions.contains(dn))
                                 continue;
-                            for (CompoundTag tag : chunk.getTileEntities()) {
-                                if (!tag.containsKey("id") || (!tag.getString("id").equals("minecraft:command_block") && !tag.getString("id").equals("Control")))
-                                    continue;
-                                if (!tag.containsKey("Command") || tag.getString("Command").isEmpty())
-                                    continue;
-                                currentX = tag.getInt("x");
-                                currentY = tag.getInt("y");
-                                currentZ = tag.getInt("z");
-                                String command = tag.getString("Command");
-                                Command cmd = parseCommand(command);
-                                if (!debug && cmd != null)
-                                    tag.putString("Command", cmd.build());
+
+                            File regionFolder = new File(dimension.getAbsolutePath() + "/region");
+                            File[] mcaFiles = regionFolder.listFiles((_, name) -> name.endsWith(".mca"));
+                            if (mcaFiles == null || mcaFiles.length == 0) {
+                                debugLine("No region files found in dimension \"" + dn + "\"");
+                                continue;
+                            }
+                            debugLine("");
+                            debugLine("Upgrading \"" + dn + "\"...");
+
+                            int count = 1;
+                            for (File f : mcaFiles) {
+                                debugLine(f.getName() + " (" + count++ + "/" + mcaFiles.length + ")");
+                                MCAFile mca = MCAUtil.read(f);
+                                for (Chunk chunk : mca) {
+                                    if (chunk == null || chunk.getTileEntities() == null)
+                                        continue;
+                                    for (CompoundTag tag : chunk.getTileEntities()) {
+                                        if (!tag.containsKey("id") || (!tag.getString("id").equals("minecraft:command_block") && !tag.getString("id").equals("Control")))
+                                            continue;
+                                        if (!tag.containsKey("Command") || tag.getString("Command").isEmpty())
+                                            continue;
+                                        currentX = tag.getInt("x");
+                                        currentY = tag.getInt("y");
+                                        currentZ = tag.getInt("z");
+                                        String command = tag.getString("Command");
+                                        Command cmd = parseCommand(command);
+                                        if (!debug && cmd != null)
+                                            tag.putString("Command", cmd.build());
+                                    }
+                                }
+                                if (!debug)
+                                    MCAUtil.write(mca, f);
                             }
                         }
-                        if (!debug)
-                            MCAUtil.write(mca, f);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -344,6 +368,7 @@ public class Elevator {
         commands.put("stopsound", StopsoundCommand.SEQUENCE);
         commands.put("stopwatch", StopwatchCommand.SEQUENCE);
         commands.put("summon", SummonCommand.SEQUENCE);
+        commands.put("swing", SwingCommand.SEQUENCE);
         commands.put("tag", TagCommand.SEQUENCE);
         commands.put("team", TeamCommand.SEQUENCE);
         commands.put("teammsg", TeammsgCommand.SEQUENCE);
