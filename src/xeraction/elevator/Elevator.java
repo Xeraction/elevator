@@ -383,6 +383,7 @@ public class Elevator {
         commands.put("tp", TeleportCommand.SEQUENCE);
         commands.put("transfer", TransferCommand.SEQUENCE);
         commands.put("trigger", TriggerCommand.SEQUENCE);
+        commands.put("unpublish", UnpublishCommand.SEQUENCE);
         commands.put("version", VersionCommand.SEQUENCE);
         commands.put("w", MsgCommand.SEQUENCE);
         commands.put("waypoint", WaypointCommand.SEQUENCE);
