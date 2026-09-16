@@ -2,19 +2,22 @@ package xeraction.elevator.command.execute;
 
 import xeraction.elevator.Elevator;
 import xeraction.elevator.ParseSequence;
+import xeraction.elevator.StringIterator;
+import xeraction.elevator.argument.Argument;
 import xeraction.elevator.argument.Vec3Argument;
 import xeraction.elevator.argument.StringArgument;
 import xeraction.elevator.argument.TargetSelectorArgument;
 import xeraction.elevator.command.DataCommand;
 import xeraction.elevator.util.NBTPath;
+import xeraction.elevator.util.SNBT;
 
 public class DataSub implements Subcommand {
     private Mode mode;
     private String target;
-    private NBTPath path;
+    private String nbt;
 
     public String build() {
-        return "data " + mode.name + " " + target + " " + path.build();
+        return "data " + mode.name + " " + target + " " + nbt;
     }
 
     public boolean requiresNext() {
@@ -22,7 +25,7 @@ public class DataSub implements Subcommand {
     }
 
     public static final ParseSequence<DataSub> SEQUENCE = new ParseSequence<>(DataSub::new)
-            .node("path", new DataCommand.NBTPathArgument(), (arg, cmd) -> {cmd.path = arg.path(); warn(arg.path().build());})
+            .node("path", new PathOrNBTArgument(), (arg, cmd) -> {cmd.nbt = arg.build(); warn(cmd.nbt);})
             .node("pos", new Vec3Argument(), (arg, cmd) -> cmd.target = arg.vec())
             .node("target", new TargetSelectorArgument(), (arg, cmd) -> cmd.target = arg.build())
             .node("src", new StringArgument(), (arg, cmd) -> cmd.target = arg.value())
@@ -42,6 +45,26 @@ public class DataSub implements Subcommand {
 
         Mode(String name) {
             this.name = name;
+        }
+    }
+
+    private static class PathOrNBTArgument implements Argument {
+        private NBTPath path = null;
+        private SNBT.Tag tag = null;
+
+        public boolean parse(StringIterator iterator) {
+            if (iterator.peek() == '{')
+                tag = SNBT.parse(iterator);
+            else
+                path = new NBTPath(iterator);
+            return true;
+        }
+
+        public String build() {
+            if (path != null)
+                return path.build();
+            else
+                return tag.build();
         }
     }
 }
