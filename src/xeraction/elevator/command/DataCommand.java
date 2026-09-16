@@ -5,25 +5,26 @@ import xeraction.elevator.ParseSequence;
 import xeraction.elevator.StringIterator;
 import xeraction.elevator.argument.*;
 import xeraction.elevator.util.NBTPath;
-import xeraction.elevator.util.SNBT;
 
 public class DataCommand implements Command {
     private String trgPos;
     private String trgEntity;
     private String trgStorage;
-    private NBTPath path;
+    private String path;
     private String scale;
-    private SNBT.Tag nbt;
+    private String nbt;
     private String index;
     private String srcPos;
     private String srcEntity;
     private String srcStorage;
-    private NBTPath srcPath;
+    private String srcPath;
     private String start;
     private String end;
     private Mode mode;
     private Setting setting;
     private ModSet modSet;
+    private String contextVal;
+    private boolean integer = false;
 
     public String build() {
         StringBuilder b = new StringBuilder("data ").append(mode.name).append(" ");
@@ -37,14 +38,14 @@ public class DataCommand implements Command {
         switch (mode) {
             case Get -> {
                 if (path != null)
-                    b.append(path.build());
+                    b.append(path);
                 if (scale != null)
                     b.append(scale);
             }
-            case Merge -> b.append(nbt.build());
-            case Remove -> b.append(path.build());
+            case Merge -> b.append(nbt);
+            case Remove -> b.append(path);
             case Modify -> {
-                b.append(path.build()).append(" ");
+                b.append(path).append(" ");
                 b.append(setting.name).append(" ");
                 if (setting == Setting.Insert)
                     b.append(index).append(" ");
@@ -58,13 +59,25 @@ public class DataCommand implements Command {
                         else
                             b.append("storage ").append(srcStorage);
                         if (srcPath != null)
-                            b.append(" ").append(srcPath.build());
+                            b.append(" ").append(srcPath);
                         if (start != null)
                             b.append(" ").append(start);
                         if (end != null)
                             b.append(" ").append(end);
                     }
-                    case Value -> b.append(nbt.build());
+                    case Value -> b.append(nbt);
+                    case Compute -> {
+                        if (srcPos != null)
+                            b.append("block ").append(srcPos);
+                        else if (srcEntity != null)
+                            b.append("entity ").append(srcEntity);
+                        else
+                            b.append("default");
+                        b.append(integer ? " integer " : " float ");
+                        b.append(srcPath);
+                        if (scale != null)
+                            b.append(" ").append(scale);
+                    }
                 }
             }
         }
@@ -78,22 +91,24 @@ public class DataCommand implements Command {
             .node("srcPos", new Vec3Argument(), (arg, cmd) -> cmd.srcPos = arg.vec())
             .node("srcEntity", new TargetSelectorArgument(), (arg, cmd) -> cmd.srcEntity = arg.build())
             .node("srcStorage", new StringArgument(), (arg, cmd) -> cmd.srcStorage = arg.value())
-            .node("path", new NBTPathArgument(), (arg, cmd) -> {cmd.path = arg.path(); warn(arg.path().build());})
+            .node("path", new NBTPathArgument(), (arg, cmd) -> {cmd.path = arg.path().build(); warn(cmd.path);})
             .node("scale", new StringArgument(), (arg, cmd) -> cmd.scale = arg.value())
-            .node("nbt", new NBTArgument(), (arg, cmd) -> {cmd.nbt = arg.tag(); warn(arg.tag().build());})
+            .node("nbt", new NBTArgument(), (arg, cmd) -> {cmd.nbt = arg.tag().build(); warn(cmd.nbt);})
             .node("index", new StringArgument(), (arg, cmd) -> cmd.index = arg.value())
-            .node("srcPath", new NBTPathArgument(), (arg, cmd) -> {cmd.srcPath = arg.path(); warn(arg.path().build());})
+            .node("srcPath", new NBTPathArgument(), (arg, cmd) -> {cmd.srcPath = arg.path().build(); warn(cmd.srcPath);})
             .node("start", new StringArgument(), (arg, cmd) -> cmd.start = arg.value())
             .node("end", new StringArgument(), (arg, cmd) -> cmd.end = arg.value())
+            .node("prov", new StringOrInlineArgument(), (arg, cmd) -> cmd.srcPath = arg.build())
             .lit("* get", cmd -> cmd.mode = Mode.Get).lit("data merge", cmd -> cmd.mode = Mode.Merge) //explicit literals are searched before wildcards, so no conflicts here
             .lit("* modify", cmd -> cmd.mode = Mode.Modify).lit("* remove", cmd -> cmd.mode = Mode.Remove)
             .lit("* append", cmd -> cmd.setting = Setting.Append).lit("* insert", cmd -> cmd.setting = Setting.Insert)
             .lit("* merge", cmd -> cmd.setting = Setting.Merge).lit("* prepend", cmd -> cmd.setting = Setting.Prepend)
             .lit("* set", cmd -> cmd.setting = Setting.Set).lit("* from", cmd -> cmd.modSet = ModSet.From)
             .lit("* string", cmd -> cmd.modSet = ModSet.String).lit("* value", cmd -> cmd.modSet = ModSet.Value)
+            .lit("* compute", cmd -> cmd.modSet = ModSet.Compute).lit("* integer", cmd -> cmd.integer = true)
             .sub("target", "(block <trgPos>|entity <trgEntity>|storage <trgStorage>)")
             .sub("source", "(block <srcPos>|entity <srcEntity>|storage <srcStorage>)")
-            .rule("data (get /target/ [<path>] [<scale>]|merge /target/ <nbt>|remove /target/ <path>|modify /target/ <path> (append|insert <index>|merge|prepend|set) (from /source/ [<srcPath>]|string /source/ [<srcPath>] [<start>] [<end>]|value <nbt>))");
+            .rule("data (get /target/ [<path>] [<scale>]|merge /target/ <nbt>|remove /target/ <path>|modify /target/ <path> (append|insert <index>|merge|prepend|set) (from /source/ [<srcPath>]|string /source/ [<srcPath>] [<start>] [<end>]|value <nbt>|compute (default|block <srcPos>|entity <srcEntity>) (integer|float) <prov>))");
 
     private static void warn(String nbt) {
         Elevator.warn("NBT in the /data command cannot be checked for correctness due to its ambiguous nature. Please verify the NBT by hand.\n" + nbt);
@@ -120,7 +135,7 @@ public class DataCommand implements Command {
     }
 
     private enum ModSet {
-        From("from"), String("string"), Value("value");
+        From("from"), String("string"), Value("value"), Compute("compute");
 
         public final String name;
 

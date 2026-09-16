@@ -563,6 +563,8 @@ public class EntityData {
     }
 
     private static void elevateBlockState(SNBT.Compound tag) {
-        tag.set("Name", LegacyData.renameBlockId(tag.getString("Name")));
+        tag.rename("Name", "id");
+        tag.rename("Properties", "properties");
+        tag.set("id", LegacyData.renameBlockId(tag.getString("id")));
     }
 }

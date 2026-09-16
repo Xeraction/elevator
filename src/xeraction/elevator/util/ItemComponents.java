@@ -55,7 +55,8 @@ public class ItemComponents {
         boolean hideCompleteTooltip = false;
         boolean hideAdditionalTooltip = false;
 
-        for (int i = 0; i < components.size(); i++) {
+        final int componentSize = components.size();
+        for (int i = 0; i < componentSize; i++) {
             SNBT.Tag t = components.get(i);
             String name = t.name.startsWith("minecraft:") ? t.name.substring(10) : t.name;
             switch (name) {
@@ -208,6 +209,19 @@ public class ItemComponents {
                         if (l.value.get(j) instanceof SNBT.Strings s)
                             l.value.set(j, TextComponent.elevateNBT(s, false));
                     }
+                }
+                case "map_color" -> components.set(i, null);
+                case "pot_decorations" -> {
+                    SNBT.Tag elv = elevatePotterySherds(t, "minecraft:pot_decorations");
+                    if (elv != null)
+                        components.set(i, elv);
+                }
+                case "swing_animation" -> {
+                    SNBT.Compound c = (SNBT.Compound)t;
+                    //setting these two components to the same value mimics the behavior of the removed component
+                    components.add(new SNBT.Compound("minecraft:attack_animation", c.value));
+                    components.add(new SNBT.Compound("minecraft:interact_animation", c.value));
+                    changedTags.put(i, null);
                 }
                 case "trim", "unbreakable" -> {
                     SNBT.Compound c = (SNBT.Compound)t;
@@ -869,5 +883,20 @@ public class ItemComponents {
             for (SNBT.Tag t : tag.getList("blocks"))
                 ((SNBT.Strings)t).value = LegacyData.renameBlockId(((SNBT.Strings)t).value);
         }
+    }
+
+    public static SNBT.Tag elevatePotterySherds(SNBT.Tag t, String newName) {
+        String[] names = {"front", "left", "back", "right"};
+        if (t instanceof SNBT.List l) {
+            SNBT.Compound newC = new SNBT.Compound(newName, new ArrayList<>());
+            for (int j = 0; j < l.value.size(); j++)
+                newC.add(new SNBT.Compound(names[j], List.of(new SNBT.Strings("id", ((SNBT.Strings)l.value.get(j)).value))));
+            return newC;
+        } else if (t instanceof SNBT.Compound c) {
+            for (String nm : names)
+                if (c.contains(nm))
+                    elevateItem(c.getCompound(nm));
+        }
+        return null;
     }
 }

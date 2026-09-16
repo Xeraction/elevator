@@ -308,6 +308,7 @@ public class Elevator {
         commands.put("bossbar", BossbarCommand.SEQUENCE);
         commands.put("clear", ClearCommand.SEQUENCE);
         commands.put("clone", CloneCommand.SEQUENCE);
+        commands.put("compute", ComputeCommand.SEQUENCE);
         commands.put("damage", DamageCommand.SEQUENCE);
         commands.put("data", DataCommand.SEQUENCE);
         commands.put("datapack", DatapackCommand.SEQUENCE);
@@ -345,6 +346,7 @@ public class Elevator {
         commands.put("perf", PerfCommand.SEQUENCE);
         commands.put("place", PlaceCommand.SEQUENCE);
         commands.put("playsound", PlaysoundCommand.SEQUENCE);
+        commands.put("posteffect", PosteffectCommand.SEQUENCE);
         commands.put("publish", PublishCommand.SEQUENCE);
         commands.put("random", RandomCommand.SEQUENCE);
         commands.put("recipe", RecipeCommand.SEQUENCE);

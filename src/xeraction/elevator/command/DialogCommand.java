@@ -2,6 +2,7 @@ package xeraction.elevator.command;
 
 import xeraction.elevator.ParseSequence;
 import xeraction.elevator.argument.StringArgument;
+import xeraction.elevator.argument.StringOrInlineArgument;
 import xeraction.elevator.argument.TargetSelectorArgument;
 
 public class DialogCommand implements Command {
@@ -15,7 +16,7 @@ public class DialogCommand implements Command {
 
     public static final ParseSequence<DialogCommand> SEQUENCE = new ParseSequence<>(DialogCommand::new)
             .node("target", new TargetSelectorArgument(), (arg, cmd) -> cmd.target = arg.build())
-            .node("dialog", new StringArgument(true), (arg, cmd) -> cmd.dialog = arg.value())
+            .node("dialog", new StringOrInlineArgument(), (arg, cmd) -> cmd.dialog = arg.build())
             .lit("* show", cmd -> cmd.show = true).lit("* clear", cmd -> cmd.show = false)
             .rule("dialog (show <target> <dialog>|clear <target>)");
 }

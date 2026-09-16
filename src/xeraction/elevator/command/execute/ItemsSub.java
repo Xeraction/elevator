@@ -23,7 +23,7 @@ public class ItemsSub implements Subcommand {
     public static final ParseSequence<ItemsSub> SEQUENCE = new ParseSequence<>(ItemsSub::new)
             .node("srcPos", new Vec3Argument(), (arg, cmd) -> cmd.src = arg.vec())
             .node("src", new TargetSelectorArgument(), (arg, cmd) -> cmd.src = arg.build())
-            .node("slot", new SlotArgument(), (arg, cmd) -> cmd.slot = arg.slot())
+            .node("slot", new SlotArgument(), (arg, cmd) -> cmd.slot = arg.build())
             .node("item", new ItemArgument(), (arg, cmd) -> cmd.item = arg.build())
             .lit("* block", cmd -> cmd.block = true).lit("* entity", cmd -> cmd.block = false)
             .rule("items (block <srcPos>|entity <src>) <slot> <item>");

@@ -55,7 +55,7 @@ public class BlockPredicate {
     }
 
     public SNBT.Compound toGeneralNBT() {
-        return toNBT("Name", "Properties", "");
+        return toNBT("id", "properties", "");
     }
 
     public SNBT.Compound toItemComponentNBT() {

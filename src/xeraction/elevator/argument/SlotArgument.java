@@ -3,15 +3,12 @@ package xeraction.elevator.argument;
 import xeraction.elevator.StringIterator;
 import xeraction.elevator.util.LegacyData;
 
-public class SlotArgument implements Argument {
-    private String slot;
-
+public class SlotArgument extends StringOrInlineArgument {
     public boolean parse(StringIterator iterator) {
-        slot = LegacyData.renameSlot(iterator.readWord());
-        return true;
-    }
+        boolean b = super.parse(iterator);
+        if (string != null)
+            string = LegacyData.renameSlot(string);
 
-    public String slot() {
-        return slot;
+        return b;
     }
 }

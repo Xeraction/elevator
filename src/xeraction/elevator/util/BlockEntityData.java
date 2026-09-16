@@ -59,15 +59,30 @@ public class BlockEntityData {
                     }
                 }
             }
+            case "brewing_stand" -> {
+                changeToInteger(tag, "BrewTime");
+                changeToInteger(tag, "Fuel");
+            }
             case "decorated_pot", "suspicious_sand", "suspicious_gravel" -> {
                 if (tag.contains("item"))
                     ItemComponents.elevateItem(tag.getCompound("item"));
+                if (tag.contains("sherds")) {
+                    SNBT.Tag t = ItemComponents.elevatePotterySherds(tag.get("sherds"), "sherds");
+                    if (t != null) {
+                        tag.remove("sherds");
+                        tag.add(t);
+                    }
+                }
             }
             case "end_gateway" -> elevateBlockPos(tag, "ExitPortal", "exit_portal");
             case "furnace", "blast_furnace", "smoker" -> {
                 tag.rename("CookTime", "cooking_time_spent");
                 tag.rename("CookTimeTotal", "cooking_total_time");
                 tag.rename("BurnTime", "lit_time_remaining");
+                changeToInteger(tag, "cooking_time_spent");
+                changeToInteger(tag, "cooking_total_time");
+                changeToInteger(tag, "lit_time_remaining");
+                changeToInteger(tag, "lit_total_time");
             }
             case "hanging_sign" -> {
                 if (tag.contains("front_text")) {
@@ -183,6 +198,17 @@ public class BlockEntityData {
                 }
             }
         }
+    }
+
+    private static void changeToInteger(SNBT.Compound tag, String name) {
+        if (!tag.contains(name))
+            return;
+        SNBT.Tag t = tag.get(name);
+        tag.remove(name);
+        if (t instanceof SNBT.Byte b)
+            tag.add(new SNBT.Int(name, b.value));
+        else if (t instanceof SNBT.Short s)
+            tag.add(new SNBT.Int(name, s.value));
     }
 
     public static void elevateBlockPos(SNBT.Compound tag, String oldName, String newName) {

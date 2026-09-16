@@ -11,7 +11,7 @@ public class LootCommand implements Command {
     private String slot;
     private String count;
     private SourceMode sourceMode;
-    private SNBT.Tag lootTable;
+    private String lootTable;
     private String sourceTarget;
     private String tool;
 
@@ -24,12 +24,9 @@ public class LootCommand implements Command {
     public static final ParseSequence<LootCommand> SEQUENCE = new ParseSequence<>(LootCommand::new)
             .node("trg", new TargetSelectorArgument(), (arg, cmd) -> cmd.target = arg.build())
             .node("pos", new Vec3Argument(), (arg, cmd) -> cmd.target = arg.vec())
-            .node("slot", new SlotArgument(), (arg, cmd) -> cmd.slot = arg.slot())
+            .node("slot", new SlotArgument(), (arg, cmd) -> cmd.slot = arg.build())
             .node("count", new StringArgument(), (arg, cmd) -> cmd.count = arg.value())
-            .node("loot", new NBTArgument(), (arg, cmd) -> {
-                cmd.lootTable = arg.tag();
-                Elevator.warn("Inline loot table definition will not be upgraded because I'm not crazy.");
-            })
+            .node("loot", new StringOrInlineArgument(), (arg, cmd) -> cmd.lootTable = arg.build())
             .node("srcPos", new Vec3Argument(), (arg, cmd) -> cmd.sourceTarget = arg.vec())
             .node("srcTrg", new TargetSelectorArgument(), (arg, cmd) -> cmd.sourceTarget = arg.build())
             .node("tool", new ItemArgument(), (arg, cmd) -> cmd.tool = arg.build())

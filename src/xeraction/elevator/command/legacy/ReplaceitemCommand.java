@@ -25,7 +25,7 @@ public class ReplaceitemCommand implements Command {
     public static final ParseSequence<ReplaceitemCommand> SEQUENCE = new ParseSequence<>(ReplaceitemCommand::new)
             .node("pos", new Vec3Argument(), (arg, cmd) -> cmd.target = arg.vec())
             .node("target", new TargetSelectorArgument(), (arg, cmd) -> cmd.target = arg.build())
-            .node("slot", new SlotArgument(), (arg, cmd) -> cmd.slot = arg.slot())
+            .node("slot", new SlotArgument(), (arg, cmd) -> cmd.slot = arg.build())
             .node("item", new ItemArgument(), (arg, cmd) -> cmd.item = arg.build())
             .node("count", new StringArgument(), (arg, cmd) -> cmd.count = arg.value())
             .node("data", new StringArgument(), (arg, cmd) -> cmd.legacyData = arg.value())

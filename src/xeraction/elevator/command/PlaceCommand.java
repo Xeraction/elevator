@@ -1,6 +1,7 @@
 package xeraction.elevator.command;
 
 import xeraction.elevator.ParseSequence;
+import xeraction.elevator.argument.StringOrInlineArgument;
 import xeraction.elevator.argument.Vec3Argument;
 import xeraction.elevator.argument.StringArgument;
 
@@ -45,6 +46,7 @@ public class PlaceCommand implements Command {
     }
 
     public static final ParseSequence<PlaceCommand> SEQUENCE = new ParseSequence<>(PlaceCommand::new)
+            .node("feature", new StringOrInlineArgument(), (arg, cmd) -> cmd.name = arg.build())
             .node("name", new StringArgument(), (arg, cmd) -> cmd.name = arg.value())
             .node("pos", new Vec3Argument(), (arg, cmd) -> cmd.pos = arg.vec())
             .node("target", new StringArgument(), (arg, cmd) -> cmd.target = arg.value())
@@ -55,7 +57,7 @@ public class PlaceCommand implements Command {
             .node("seed", new StringArgument(), (arg, cmd) -> cmd.seed = arg.value())
             .lit("* strict", cmd -> cmd.strict = true)
             .lit((cmd, lit) -> cmd.mode = Mode.parse(lit))
-            .rule("place (feature <name> [<pos>]|jigsaw <name> <target> <maxDepth> [<pos>]|structure <name> [<pos>]|template <name> [<pos>] [<rot>] [<mirror>] [<int>] [<seed>] [strict])");
+            .rule("place (feature <feature> [<pos>]|jigsaw <name> <target> <maxDepth> [<pos>]|structure <name> [<pos>]|template <name> [<pos>] [<rot>] [<mirror>] [<int>] [<seed>] [strict])");
 
     private enum Mode {
         Feature("feature"), Jigsaw("jigsaw"), Structure("structure"), Template("template");

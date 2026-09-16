@@ -53,6 +53,7 @@ public class IfUnlessSub implements Subcommand {
         subCommands.put("loaded", LoadedSub.SEQUENCE);
         subCommands.put("predicate", ValueSub.PredicateSub.SEQUENCE);
         subCommands.put("score", ScoreSub.SEQUENCE);
+        subCommands.put("slots", SlotSub.SEQUENCE);
         subCommands.put("stopwatch", StopwatchSub.SEQUENCE);
     }
 }
