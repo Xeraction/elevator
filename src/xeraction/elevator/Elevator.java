@@ -13,6 +13,7 @@ import java.util.*;
 
 public class Elevator {
     private static boolean debug = false;
+    private static boolean save = true;
     public static boolean executeTP = false;
     private static Mode mode = null;
     private static boolean noWarnings = false;
@@ -39,6 +40,7 @@ public class Elevator {
             System.out.println(" ");
             System.out.println("#these are optional#");
             System.out.println("-debug / -d : Prints out additional details and doesn't save in world and file mode");
+            System.out.println("-bebug / -b : Prints out additional details and DOES save in world and file mode");
             System.out.println("-no-warnings / -n : Doesn't print command warnings (mostly NBT-related). Still prints errors.");
             System.out.println("-tp / -t : Puts tp commands that use ~-notation in an execute command to be executed by the target due to changes to command execution locations");
             System.out.println("-exclude / -x : World mode only: Excludes the specified dimensions from being upgraded (e.g. -x minecraft:the_nether,minecraft:the_end to only upgrade the overworld)");
@@ -59,7 +61,14 @@ public class Elevator {
                 case "-world", "-w" -> mode = Mode.World;
                 case "-file", "-f" -> mode = Mode.File;
                 case "-single", "-s" -> mode = Mode.Single;
-                case "-debug", "-d" -> debug = true;
+                case "-debug", "-d" -> {
+                    debug = true;
+                    save = false;
+                }
+                case "-bebug", "-b" -> {
+                    debug = true;
+                    save = true;
+                }
                 case "-no-warnings", "-n" -> noWarnings = true;
                 case "-tp", "-t" -> executeTP = true;
                 case "-exclude", "-x" -> excludedDimensions.addAll(Arrays.stream(args[++i].split(",")).toList());
@@ -142,11 +151,11 @@ public class Elevator {
                                         currentZ = tag.getInt("z");
                                         String command = tag.getString("Command");
                                         Command cmd = parseCommand(command);
-                                        if (!debug && cmd != null)
+                                        if (save && cmd != null)
                                             tag.putString("Command", cmd.build());
                                     }
                                 }
-                                if (!debug)
+                                if (save)
                                     MCAUtil.write(mca, f);
                             }
                         }
@@ -173,7 +182,7 @@ public class Elevator {
                         if (cmd != null)
                             elevated.add(cmd.build());
                     }
-                    if (!debug) {
+                    if (save) {
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                         for (String s : elevated) {
                             writer.write(s);

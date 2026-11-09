@@ -24,6 +24,7 @@ The tool has 3 modes: world mode, file mode, and single mode. One of those is re
 
 ### Optional Options
 - -debug / -d : Prints additional debug information, creates a log file and doesn't save in world and file mode.
+- -bebug / -b : Same as -debug, but it does save world/file. (for the impatient ones ;) )
 - -no-warnings / -n : Doesn't print command warnings (mostly NBT-related). Still prints errors.
 - -tp / -t : Puts tp commands that use ~-notation in an execute command to be executed by the target due to changes to command execution locations.
 - -exclude / -x : World mode only: Excludes the specified dimensions from being upgraded (e.g. -x minecraft:the_nether,minecraft:the_end to only upgrade the overworld)
