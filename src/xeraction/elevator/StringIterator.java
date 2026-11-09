@@ -134,8 +134,8 @@ public class StringIterator {
     public String readUntil(Predicate<Character> condition) {
         skipSpaces();
         StringBuilder builder = new StringBuilder();
-        while (pointer < string.length() && !condition.test(next()))
-            builder.append(current());
+        while (pointer < string.length() && !condition.test(peekSkip()))
+            builder.append(nextSkip());
         return builder.toString();
     }
 
